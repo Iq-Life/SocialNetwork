@@ -1,0 +1,19 @@
+.nav {
+    grid-area: n;
+    background-color: DimGrey;
+    margin-left: 5px;
+    border-radius: 25px;
+    border:1px solid Cyan;
+}
+.item {
+    color: #00BFFF;
+    padding: 10px 0px;
+    text-align: center;
+
+}
+.item a{
+    text-decoration: none;
+}
+.item a.activeLink {
+    color: Cyan;
+}

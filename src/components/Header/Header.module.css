@@ -1,0 +1,15 @@
+.header {
+    grid-area: h;
+    background-color: DimGray;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}
+
+header img {
+    width: 1200px;
+    height: 60px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}

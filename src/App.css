@@ -1,0 +1,21 @@
+.app-wrapper {
+    display: grid;
+    margin: 0 auto;
+    width: 1200px;
+    grid-template-areas:
+"h h "
+"n c";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
+    background-color: #191919;
+    color: Cyan;
+}
+
+.app-wrapper-content {
+    grid-area: c;
+    margin-right: 5px;
+    background-color: DimGrey;
+    border: 1px solid Cyan;
+    border-radius: 25px;
+}

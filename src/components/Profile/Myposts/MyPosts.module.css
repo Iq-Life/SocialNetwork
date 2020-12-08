@@ -1,0 +1,12 @@
+.content {
+    grid-area: c;
+    background-color: DarkSlateGrey;
+    padding: 10px;
+}
+.item {
+    margin-top: 10px;
+}
+.allPost {
+    color: Cyan;
+    padding: 10px;
+}
