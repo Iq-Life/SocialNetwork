@@ -122,12 +122,15 @@ export let store: StoreType = {
             this._callSubscriber(store.getState())
 
         } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-            debugger
             this._state.dialogsPage.newMessageText = action.newMessageText
             this._callSubscriber(store.getState())
         }
     }
 }
+
+export const sendMessageCreator= () => ({type: "ADD-MESSAGE"})
+export const updateNewMessageTextAC = (newMessageText:string) =>
+    ({type: "UPDATE-NEW-MESSAGE-TEXT", newText: newMessageText})
 
 
 /*
