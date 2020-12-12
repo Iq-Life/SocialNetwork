@@ -2,7 +2,9 @@ import React from 'react';
 import s from './Dialog.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionTypes, changeNewMessageTextAC ,  addMessageAC, DialogsPgeType} from "../../redux/state";
+import {ActionTypes, DialogsPgeType} from "../../redux/state";
+import {changeNewMessageTextAC} from "../../redux/profile-reducer";
+import {addMessageAC} from "../../redux/dialogs-reducer";
 
 type DialogsType = {
     dialogsPage: DialogsPgeType
