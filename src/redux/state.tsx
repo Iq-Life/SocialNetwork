@@ -130,7 +130,7 @@ export let store: StoreType = {
 
 export const sendMessageCreator= () => ({type: "ADD-MESSAGE"})
 export const updateNewMessageTextAC = (newMessageText:string) =>
-    ({type: "UPDATE-NEW-MESSAGE-TEXT", newText: newMessageText})
+    ({type: "UPDATE-NEW-MESSAGE-TEXT", newMessageText: newMessageText})
 
 
 /*

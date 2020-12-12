@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialog.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionTypes,  addMessageAC, updateNewMessageTextAC, DialogsPgeType} from "../../redux/state";
+import {ActionTypes, changeNewMessageTextAC ,  addMessageAC, DialogsPgeType} from "../../redux/state";
 
 type DialogsType = {
     dialogsPage: DialogsPgeType
@@ -17,25 +17,25 @@ function Dialogs(props: DialogsType) {
     let messageElements = props.dialogsPage.messages
         .map((m) => <Message id={m.id} message={m.message}/>)
 
-    let newMessageText =props.newMessageText;
-
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     let addMessage = () => {
         props.dispatch(addMessageAC(props.newMessageText))
     }
-    let onMessageChange = (e: any) => {
-        let  body = e.event.value;
-        props.dispatch(updateNewMessageTextAC(newMessageText))
-    }
-    /*let onMessageChange = () => {
+
+    let onMessageChange = () => {
         if (newMessageElement.current) {
             let newMessageText = newMessageElement.current.value
-            props.dispatch(changeNewTextAC(newMessageText))
+            props.dispatch(changeNewMessageTextAC(newMessageText))
             newMessageElement.current.value = ""
         }
-    }*/
+    }
 
+    const addMessageKeyPress = (e:any) => {
+        if (e.key === "Enter") {
+            addMessage()
+        }
+    }
 
     return (
         <div className={s.dialogs}>
@@ -49,8 +49,9 @@ function Dialogs(props: DialogsType) {
                         className={s.textMessages}
                         onChange={onMessageChange}
                         ref={newMessageElement}
-                        value={newMessageText}
+                        value={props.newMessageText}
                         placeholder={'Enter Your message'}
+                        onKeyPress={addMessageKeyPress}
                     />
                     <button onClick={addMessage}>add</button>
                 </div>
