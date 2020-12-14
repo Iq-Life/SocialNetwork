@@ -1,9 +1,27 @@
-import {ActionTypes, DialogsPgeType, MessagesType, RooTStateType} from "./state";
+import {ActionTypes, DialogsPgeType, MessagesType} from "./state";
 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
 const ADD_MESSAGE = 'ADD_MESSAGE'
 
-export const dialogsReducer = (state: DialogsPgeType, action: ActionTypes) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: "Diana"},
+        {id: 2, name: "Kirill"},
+        {id: 3, name: "Ilya"},
+        {id: 4, name: "Anton"},
+        {id: 5, name: "Maldor"}
+    ],
+    messages: [
+        {id: 1, message: "Hi"},
+        {id: 2, message: "How is your it-kamasutra?"},
+        {id: 3, message: "Yo"},
+        {id: 4, message: "Hi"},
+        {id: 5, message: "Pi"}
+    ],
+    newMessageText: ''
+}
+
+export const dialogsReducer = (state= initialState, action: ActionTypes) => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage: MessagesType = {

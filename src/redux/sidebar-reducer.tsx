@@ -1,7 +1,9 @@
 import {ActionTypes, RooTStateType} from "./state";
 
+let initialState = {
+}
 
- const sidebarReducer = (state: RooTStateType, action: ActionTypes) => {
+ const sidebarReducer = (state= initialState, action: ActionTypes) => {
 
 return state
 }

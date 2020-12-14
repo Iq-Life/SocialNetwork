@@ -1,9 +1,11 @@
 import profileReducer, {addPostAC, changeNewMessageTextAC} from "./profile-reducer";
 import dialogsReducer, {addMessageAC, changeNewTextAC} from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 export type RooTStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPgeType
+    sidebar: any
 }
 export type DialogsPgeType = {
     dialogs: Array<DialogsType>
@@ -65,7 +67,8 @@ export let store: StoreType = {
                 {id: 5, message: "Pi"}
             ],
             newMessageText: ''
-        }
+        },
+        sidebar: {}
     },
     _callSubscriber() {
         console.log("state change")
@@ -79,9 +82,9 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer
 
         this._callSubscriber(this._state)
     }

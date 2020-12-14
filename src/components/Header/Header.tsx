@@ -1,10 +1,10 @@
 import React from "react";
 import s from './Header.module.css';
-import lo from './../../assets/img/14.jpg';
+import lo from './../../assets/img/13.jpg';
 
 function Header() {
     return <header className={s.header}>
-        <img src={lo} alt="World atlas" width={1100} height={50} />
+        <img src={lo} alt="World atlas" />
     </header>
     }
 

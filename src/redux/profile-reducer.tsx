@@ -1,10 +1,20 @@
-import {ActionTypes, PostsType, ProfilePageType, RooTStateType} from "./state";
+import {ActionTypes, PostsType, ProfilePageType} from "./state";
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 
- const profileReducer = (state: ProfilePageType, action: ActionTypes) => {
-    switch (action.type){
+let initialState = {
+    posts: [
+        {id: 1, message: "Hi, how are you?", like: 56},
+        {id: 2, message: "It's my first post", like: 434},
+        {id: 3, message: "Blabla", like: 44},
+        {id: 4, message: "I lick banana", like: 4554}
+    ],
+    newPostText: '...'
+}
+
+const profileReducer = (state=initialState, action: ActionTypes) => {
+    switch (action.type) {
         case ADD_POST:
             let newPost: PostsType = {
                 id: new Date().getTime(),
