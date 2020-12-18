@@ -2,14 +2,14 @@ import React from 'react';
 import s from './Dialog.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionTypes, DialogsPgeType} from "../../redux/state";
-import {changeNewMessageTextAC} from "../../redux/profile-reducer";
-import {addMessageAC} from "../../redux/dialogs-reducer";
+import {DialogsPgeType} from "../../redux/state";
+
 
 type DialogsType = {
     dialogsPage: DialogsPgeType
-    dispatch: (action: ActionTypes) => void
     newMessageText: string
+    addMessage:()=>void
+    updateNewMessageText : (newMessageText:string)=> void
 }
 
 function Dialogs(props: DialogsType) {
@@ -21,21 +21,21 @@ function Dialogs(props: DialogsType) {
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    let addMessage = () => {
-        props.dispatch(addMessageAC(props.newMessageText))
+    let onAddMessage = () => {
+        props.addMessage()
     }
 
     let onMessageChange = () => {
         if (newMessageElement.current) {
             let newMessageText = newMessageElement.current.value
-            props.dispatch(changeNewMessageTextAC(newMessageText))
+            props.updateNewMessageText(newMessageText)
             newMessageElement.current.value = ""
         }
     }
 
     const addMessageKeyPress = (e:any) => {
         if (e.key === "Enter") {
-            addMessage()
+            onAddMessage()
         }
     }
 
@@ -55,7 +55,7 @@ function Dialogs(props: DialogsType) {
                         placeholder={'Enter Your message'}
                         onKeyPress={addMessageKeyPress}
                     />
-                    <button onClick={addMessage}>add</button>
+                    <button onClick={onAddMessage}>add</button>
                 </div>
             </div>
         </div>

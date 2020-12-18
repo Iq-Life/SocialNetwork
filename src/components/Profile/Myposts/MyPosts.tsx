@@ -46,6 +46,7 @@ return (
                         ref={newPostElement}
                         value={props.newPostText}
                         onKeyPress={addPostKeyPress}
+                        placeholder={'...'}
                     >
                     </textarea>
             </div>
