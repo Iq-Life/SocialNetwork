@@ -1,5 +1,5 @@
 import React from "react";
-import {PostsType, ActionTypes, ProfilePageType} from "../../../redux/state";
+import {ProfilePageType} from "../../../redux/state";
 import {changeNewTextAC} from "../../../redux/dialogs-reducer";
 import {addPostAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";

@@ -1,5 +1,5 @@
 import React from 'react';
-import {DialogsPgeType} from "../../redux/state";
+import {ActionTypes, DialogsPgeType, RooTStateType} from "../../redux/state";
 import {changeNewMessageTextAC} from "../../redux/profile-reducer";
 import {addMessageAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialog";
@@ -32,7 +32,27 @@ function DialogsContainer() {
                     updateNewMessageText={onMessageChange}
     />
 }
+/*
 
-const SuperDialogsContainer = connect () (Dialogs);
+let mapStateToProps = (state:RooTStateType) => {
+    return {
+        dialogsPage:state.dialogsPage,
+        newMessageText:state.dialogsPage.newMessageText
+    }
+}
+
+let mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
+    return {
+        updateNewMessageText: (newMessageText:string) => {
+            dispatch(changeNewMessageTextAC(newMessageText))
+        },
+        addMessage: (text:DialogsPgeType) => {
+            dispatch(addMessageAC(text.newMessageText))
+        }
+    }
+}
+
+const DialogsContainer = connect (mapStateToProps, mapDispatchToProps) (Dialogs);
+*/
 
 export default DialogsContainer;
