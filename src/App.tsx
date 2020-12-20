@@ -3,7 +3,6 @@ import './App.css';
 import Header from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialog";
 import {Route} from "react-router-dom";
 import Settings from "./components/Setting/Settings";
 import News from "./components/News/News";
@@ -15,7 +14,7 @@ type AppType ={
     state:RooTStateType
     dispatch: (action:ActionTypes) => void
 }
-function App (props: AppType) {
+function App () {
 
     return (
         <div className='app-wrapper'>
@@ -23,16 +22,9 @@ function App (props: AppType) {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={ () => <DialogsContainer
-                           dialogsPage={props.state.dialogsPage}
-                           dispatch={props.dispatch}
-                           newMessageText={props.state.dialogsPage.newMessageText}
-                       /> }/>
+                       render={ () => <DialogsContainer /> }/>
                 <Route path='/profile'
-                       render={ () => <Profile
-                           profilePage={props.state.profilePage}
-                           dispatch={props.dispatch}
-                       /> }/>
+                       render={ () => <Profile /> }/>
                 <Route path='/settings'
                        render={ () => <Settings/> }/>
                 <Route path='/news'

@@ -1,33 +1,38 @@
 import React from 'react';
-import s from './Dialog.module.css';
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import {ActionTypes, DialogsPgeType} from "../../redux/state";
+import {DialogsPgeType} from "../../redux/state";
 import {changeNewMessageTextAC} from "../../redux/profile-reducer";
 import {addMessageAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialog";
+import {connect, useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
 
 type DialogsTypeContainer = {
-    dispatch: (action: ActionTypes) => void
-    newMessageText:string
-    dialogsPage: DialogsPgeType
+    // dispatch: (action: ActionTypes) => void
+    // newMessageText:string
+    // dialogsPage: DialogsPgeType
 }
 
-function DialogsContainer(props: DialogsTypeContainer) {
+function DialogsContainer() {
+
+    let dialogsPage = useSelector<AppStateType, DialogsPgeType>(state => state.dialogsPage)
+
+    let dispatch = useDispatch()
 
     let addMessage = () => {
-        props.dispatch(addMessageAC(props.newMessageText))
+        dispatch(addMessageAC(dialogsPage.newMessageText))
     }
 
     let onMessageChange = (newMessageText:string) => {
-            props.dispatch(changeNewMessageTextAC(newMessageText))
+            dispatch(changeNewMessageTextAC(newMessageText))
     }
 
-    return <Dialogs dialogsPage={props.dialogsPage}
-                    newMessageText={props.newMessageText}
+    return <Dialogs dialogsPage={dialogsPage}
+                    newMessageText={dialogsPage.newMessageText}
                     addMessage={addMessage}
                     updateNewMessageText={onMessageChange}
     />
 }
+
+const SuperDialogsContainer = connect () (Dialogs);
 
 export default DialogsContainer;

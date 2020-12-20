@@ -9,15 +9,12 @@ type PropsType = {
     profilePage: ProfilePageType
 }
 
-export function Profile(props:PropsType) {
+export function Profile() {
 
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPostsContainer newPostText={props.profilePage.newPostText}
-                     posts={props.profilePage.posts}
-                     dispatch={props.dispatch}
-            />
+            <MyPostsContainer />
         </div>
     )
 }
