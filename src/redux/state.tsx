@@ -1,7 +1,7 @@
 import profileReducer, {addPostAC, changeNewMessageTextAC} from "./profile-reducer";
 import dialogsReducer, {addMessageAC, changeNewTextAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {followedAC, unfollowedAC} from "./users-reducer";
+import {followedAC, setUsersAC, unfollowedAC} from "./users-reducer";
 
 export type RooTStateType = {
     profilePage: ProfilePageType
@@ -17,6 +17,9 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
+export type UsersPageType = {
+    users: Array<UserType>
+}
 export type PostsType = {
     id: number
     message: string
@@ -30,6 +33,13 @@ export type MessagesType = {
     id: number
     message: string
 }
+export type UserType = {
+    id: number,
+    followed: boolean,
+    fullName: string,
+    status: string,
+    location: {country:string, city:string}
+}
 export type StoreType = {
     _state: RooTStateType
     getState: () => RooTStateType
@@ -39,7 +49,7 @@ export type StoreType = {
 }
 export type ActionTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changeNewTextAC>
     |ReturnType<typeof addMessageAC>| ReturnType<typeof changeNewMessageTextAC>|
-    ReturnType<typeof followedAC>| ReturnType<typeof unfollowedAC>
+    ReturnType<typeof followedAC>| ReturnType<typeof unfollowedAC>| ReturnType<typeof setUsersAC>
 
 export let store: StoreType = {
 

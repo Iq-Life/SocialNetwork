@@ -1,9 +1,9 @@
 import React from 'react';
-import {ActionTypes, DialogsPgeType, RooTStateType} from "../../redux/state";
+import {DialogsPgeType} from "../../redux/state";
 import {changeNewMessageTextAC} from "../../redux/profile-reducer";
 import {addMessageAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialog";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 
 type DialogsTypeContainer = {
