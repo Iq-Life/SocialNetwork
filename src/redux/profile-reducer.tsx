@@ -1,4 +1,4 @@
-import {ActionTypes, PostsType, ProfilePageType} from "./state";
+import {ActionTypes, PostsType} from "./state";
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
@@ -21,12 +21,9 @@ const profileReducer = (state=initialState, action: ActionTypes) => {
                 message: action.postText,
                 like: 0
             }
-            state.posts.push(newPost);
-            state.newPostText = ''
-            return state
+            return {...state, posts: [newPost, ...state.posts], newPostText:''};
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state
+            return {...state, newPostText: action.newText};
         default:
             return state
     }

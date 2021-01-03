@@ -6,12 +6,6 @@ import MyPosts from "./MyPosts";
 import {AppStateType} from "../../../redux/redux-store";
 import {useDispatch, useSelector} from "react-redux";
 
-type MyPostsContainerType = {
-    // posts: Array<PostsType>
-    // dispatch: (action: ActionTypes) => void
-    // newPostText: string
-}
-
 function MyPostsContainer() {
 
     let PostPage = useSelector <AppStateType, ProfilePageType>(state => state.profilePage)

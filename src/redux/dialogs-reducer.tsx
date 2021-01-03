@@ -1,4 +1,4 @@
-import {ActionTypes, DialogsPgeType, MessagesType} from "./state";
+import {ActionTypes, MessagesType} from "./state";
 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
 const ADD_MESSAGE = 'ADD_MESSAGE'
@@ -26,13 +26,11 @@ export const dialogsReducer = (state= initialState, action: ActionTypes) => {
         case ADD_MESSAGE:
             let newMessage: MessagesType = {
                 id: new Date().getTime(),
-                message: action.messageText}
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            return state
+                message: action.messageText
+            }
+            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText
-            return state
+            return {...state, newMessageText: action.newMessageText}
         default:
             return state
     }

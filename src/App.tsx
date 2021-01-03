@@ -7,13 +7,9 @@ import {Route} from "react-router-dom";
 import Settings from "./components/Setting/Settings";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
-import {ActionTypes, RooTStateType} from "./redux/state";
 import DialogsContainer from "./components/Dialogs/DialogContainer";
+import Users from "./components/Users/Users";
 
-type AppType ={
-    state:RooTStateType
-    dispatch: (action:ActionTypes) => void
-}
 function App () {
 
     return (
@@ -25,6 +21,8 @@ function App () {
                        render={ () => <DialogsContainer /> }/>
                 <Route path='/profile'
                        render={ () => <Profile /> }/>
+                <Route path='/users'
+                       render={ () => <Users /> }/>
                 <Route path='/settings'
                        render={ () => <Settings/> }/>
                 <Route path='/news'
