@@ -4,6 +4,10 @@ const FOLLOWED = "FOLLOWED"
 const UNFOLLOWED = "UNFOLLOWED"
 const SET_USERS = "SET_USERS"
 
+type InitialStateType = {
+    users: Array<UserType>
+}
+
 let initialState = {
     users: [
         {id: 1, followed: true, fullName: "Kirill", status: "First blood", location: {country: "Russia", city: "Penza"}},
@@ -13,13 +17,16 @@ let initialState = {
     ]
 }
 
-const usersReducer = (state = initialState, action: ActionTypes) => {
+const usersReducer = (state: InitialStateType = initialState, action: ActionTypes):InitialStateType => {
     switch (action.type) {
         case FOLLOWED:
             return {
-                ...state, users: [...state.users.map(u => {
+                ...state,
+                users: [...state.users.map(u => {
                     if (u.id === action.usersID) {
                         return {...u, followed: true}
+                    } else {
+                        return u
                     }
                 })]
             }
@@ -28,6 +35,8 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
                 ...state, users: [...state.users.map(u => {
                     if (u.id === action.usersID) {
                         return {...u, followed: false}
+                    } else {
+                        return u
                     }
                 })]
             }

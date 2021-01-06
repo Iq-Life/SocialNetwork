@@ -6,6 +6,7 @@ import {followedAC, setUsersAC, unfollowedAC} from "./users-reducer";
 export type RooTStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPgeType
+    usersPage: UsersPageType
     sidebar: any
 }
 export type DialogsPgeType = {
@@ -80,6 +81,13 @@ export let store: StoreType = {
             ],
             newMessageText: ''
         },
+        usersPage: {
+            users: [
+            {id: 1, followed: true, fullName: "Kirill", status: "First blood", location: {country: "Russia", city: "Penza"}},
+            {id: 2, followed: false, fullName: "Dmitriy", status: "It's my first status", location: {country: "Belarus", city: "Minsk"}},
+            {id: 3, followed: true, fullName: "Sasha", status: "Crazy girl", location: {country: "Ukraine", city: "Kiev"}},
+            {id: 4, followed: false, fullName: "Kristina", status: "I lick banana", location: {country: "Russia", city: "Moscow"}}
+        ]},
         sidebar: {}
     },
     _callSubscriber() {
