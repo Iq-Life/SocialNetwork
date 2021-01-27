@@ -1,8 +1,16 @@
-import {ActionTypes, UserType} from "./state";
+import {ActionTypes} from "./state";
 
 const FOLLOWED = "FOLLOWED"
 const UNFOLLOWED = "UNFOLLOWED"
 const SET_USERS = "SET_USERS"
+
+export type UserType = {
+    id: number,
+    followed: boolean,
+    fullName: string,
+    status: string,
+    location: {country:string, city:string}
+}
 
 type InitialStateType = {
     users: Array<UserType>

@@ -15,14 +15,4 @@ let store = createStore(reducersBatch);
 
 export type AppStateType = ReturnType<typeof reducersBatch>
 
-
-
-
-// const mstp = (state: AppStateType)=> {
-//     return {
-//         users: state.userrsReduicer.users
-//     }
-// }
-
-
 export default store

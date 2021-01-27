@@ -1,9 +1,19 @@
-import {ActionTypes, PostsType} from "./state";
+import {ActionTypes} from "./state";
 
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 
-let initialState = {
+export type ProfilePageType = {
+    posts: Array<PostsType>
+    newPostText: string
+}
+export type PostsType = {
+    id: number
+    message: string
+    like: number
+}
+
+let initialState : ProfilePageType = {
     posts: [
         {id: 1, message: "Hi, how are you?", like: 56},
         {id: 2, message: "It's my first post", like: 434},
@@ -13,21 +23,27 @@ let initialState = {
     newPostText: ''
 }
 
-const profileReducer = (state=initialState, action: ActionTypes) => {
+const profileReducer = (state = initialState, action: ActionTypes):ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
+            let postText = state.newPostText
             let newPost: PostsType = {
                 id: new Date().getTime(),
-                message: action.postText,
+                message: postText,
                 like: 0
             }
-            return {...state, posts: [newPost, ...state.posts], newPostText:''};
+            return {
+                ...state,
+                posts: [ newPost, ...state.posts],
+                newPostText: ""
+            }
         case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.newText};
+            return {...state, newPostText: action.newPostText}
         default:
             return state
     }
 }
+
 
 export const addPostAC = (postText: string) => {
     return {
@@ -35,10 +51,10 @@ export const addPostAC = (postText: string) => {
         postText: postText
     } as const
 }
-export const changeNewMessageTextAC = (newMessageText: string) => {
+export const changeNewMessagePostTextAC = (newPostText: string) => {
     return {
-        type: "UPDATE_NEW_MESSAGE_TEXT",
-        newMessageText: newMessageText
+        type: 'UPDATE_NEW_POST_TEXT',
+        newPostText: newPostText
     } as const
 }
 

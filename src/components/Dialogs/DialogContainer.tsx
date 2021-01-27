@@ -1,58 +1,36 @@
 import React from 'react';
-import {DialogsPgeType} from "../../redux/state";
-import {changeNewMessageTextAC} from "../../redux/profile-reducer";
-import {addMessageAC} from "../../redux/dialogs-reducer";
+import {addMessageAC, changeNewTextDialogsAC} from "../../redux/dialogs-reducer";
+import {connect} from "react-redux";
 import Dialogs from "./Dialog";
-import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import store, {AppStateType} from "../../redux/redux-store";
+import {DialogsPgeType} from "../../redux/state";
 
-type DialogsTypeContainer = {
-    // dispatch: (action: ActionTypes) => void
-    // newMessageText:string
-    // dialogsPage: DialogsPgeType
+type IMapStateToProps ={
+    dialogsPage: DialogsPgeType
+    newMessageText: string
+}
+type IMapDispatchToProps ={
+    updateNewMessageText: (newMessageText: string) => void
+    addMessage: any
 }
 
-function DialogsContainer() {
-
-    let dialogsPage = useSelector<AppStateType, DialogsPgeType>(state => state.dialogsPage)
-
-    let dispatch = useDispatch()
-
-    let addMessage = () => {
-        dispatch(addMessageAC(dialogsPage.newMessageText))
-    }
-
-    let onMessageChange = (newMessageText:string) => {
-            dispatch(changeNewMessageTextAC(newMessageText))
-    }
-
-    return <Dialogs dialogsPage={dialogsPage}
-                    newMessageText={dialogsPage.newMessageText}
-                    addMessage={addMessage}
-                    updateNewMessageText={onMessageChange}
-    />
-}
-/*
-
-let mapStateToProps = (state:RooTStateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
-        dialogsPage:state.dialogsPage,
-        newMessageText:state.dialogsPage.newMessageText
+        dialogsPage: state.dialogsPage,
+        newMessageText: state.dialogsPage.newMessageText
     }
 }
-
-let mapDispatchToProps = (dispatch: (action: ActionTypes) => void) => {
-    return {
-        updateNewMessageText: (newMessageText:string) => {
-            dispatch(changeNewMessageTextAC(newMessageText))
-        },
-        addMessage: (text:DialogsPgeType) => {
-            dispatch(addMessageAC(text.newMessageText))
+    let mapDispatchToProps = () => {
+        return {
+            updateNewMessageText: (newMessageText: string) => {
+                store.dispatch(changeNewTextDialogsAC(newMessageText))
+            },
+            addMessage: (newMessageText: string) => {
+                store.dispatch(addMessageAC(newMessageText))
+            }
         }
     }
-}
+    const DialogsContainer = connect<IMapStateToProps, IMapDispatchToProps, {}, AppStateType>
+    (mapStateToProps, mapDispatchToProps)(Dialogs);
 
-const DialogsContainer = connect (mapStateToProps, mapDispatchToProps) (Dialogs);
-*/
-
-export default DialogsContainer;
+    export default DialogsContainer;

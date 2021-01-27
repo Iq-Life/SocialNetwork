@@ -1,12 +1,12 @@
-import profileReducer, {addPostAC, changeNewMessageTextAC} from "./profile-reducer";
-import dialogsReducer, {addMessageAC, changeNewTextAC} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {followedAC, setUsersAC, unfollowedAC} from "./users-reducer";
+import dialogsReducer, {addMessageAC, changeNewTextDialogsAC} from "./dialogs-reducer";
+import profileReducer, {addPostAC, changeNewMessagePostTextAC} from "./profile-reducer";
 
 export type RooTStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPgeType
-    usersPage: UsersPageType
+    /*usersPage: UsersPageType*/
     sidebar: any
 }
 export type DialogsPgeType = {
@@ -17,9 +17,6 @@ export type DialogsPgeType = {
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
-}
-export type UsersPageType = {
-    users: Array<UserType>
 }
 export type PostsType = {
     id: number
@@ -34,13 +31,6 @@ export type MessagesType = {
     id: number
     message: string
 }
-export type UserType = {
-    id: number,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location: {country:string, city:string}
-}
 export type StoreType = {
     _state: RooTStateType
     getState: () => RooTStateType
@@ -48,8 +38,8 @@ export type StoreType = {
     _callSubscriber: (state: RooTStateType) => void
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changeNewTextAC>
-    |ReturnType<typeof addMessageAC>| ReturnType<typeof changeNewMessageTextAC>|
+export type ActionTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changeNewMessagePostTextAC>
+    |ReturnType<typeof addMessageAC>| ReturnType<typeof changeNewTextDialogsAC>|
     ReturnType<typeof followedAC>| ReturnType<typeof unfollowedAC>| ReturnType<typeof setUsersAC>
 
 export let store: StoreType = {
@@ -81,13 +71,6 @@ export let store: StoreType = {
             ],
             newMessageText: ''
         },
-        usersPage: {
-            users: [
-            {id: 1, followed: true, fullName: "Kirill", status: "First blood", location: {country: "Russia", city: "Penza"}},
-            {id: 2, followed: false, fullName: "Dmitriy", status: "It's my first status", location: {country: "Belarus", city: "Minsk"}},
-            {id: 3, followed: true, fullName: "Sasha", status: "Crazy girl", location: {country: "Ukraine", city: "Kiev"}},
-            {id: 4, followed: false, fullName: "Kristina", status: "I lick banana", location: {country: "Russia", city: "Moscow"}}
-        ]},
         sidebar: {}
     },
     _callSubscriber() {
