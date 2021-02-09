@@ -7,9 +7,10 @@ const SET_USERS = "SET_USERS"
 export type UserType = {
     id: number,
     followed: boolean,
-    fullName: string,
+    name: string,
     status: string,
-    location: {country:string, city:string}
+    location: {country:string, city:string},
+    photos: any
 }
 
 type InitialStateType = {
@@ -18,10 +19,7 @@ type InitialStateType = {
 
 let initialState = {
     users: [
-        {id: 1, followed: true, fullName: "Kirill", status: "First blood", location: {country: "Russia", city: "Penza"}},
-        {id: 2, followed: false, fullName: "Dmitriy", status: "It's my first status", location: {country: "Belarus", city: "Minsk"}},
-        {id: 3, followed: true, fullName: "Sasha", status: "Crazy girl", location: {country: "Ukraine", city: "Kiev"}},
-        {id: 4, followed: false, fullName: "Kristina", status: "I lick banana", location: {country: "Russia", city: "Moscow"}}
+
     ]
 }
 

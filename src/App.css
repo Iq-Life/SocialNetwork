@@ -19,3 +19,7 @@
     border: 1px solid Cyan;
     border-radius: 25px;
 }
+.all {
+    background-color: #191919;
+    min-height: 100vh;
+}

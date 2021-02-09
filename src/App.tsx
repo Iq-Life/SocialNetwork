@@ -10,28 +10,29 @@ import Music from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 
-function App () {
+function App() {
 
-    return (
+    return <div className="all">
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={ () => <DialogsContainer /> }/>
+                       render={() => <DialogsContainer/>}/>
                 <Route path='/profile'
-                       render={ () => <Profile /> }/>
+                       render={() => <Profile/>}/>
                 <Route path='/users'
-                       render={ () => <UsersContainer /> }/>
+                       render={() => <UsersContainer/>}/>
                 <Route path='/settings'
-                       render={ () => <Settings/> }/>
+                       render={() => <Settings/>}/>
                 <Route path='/news'
-                       render={ () => <News/> }/>
+                       render={() => <News/>}/>
                 <Route path='/music'
-                       render={ () => <Music/> }/>
+                       render={() => <Music/>}/>
             </div>
         </div>
 
-)}
+    </div>
+}
 
 export default App;
