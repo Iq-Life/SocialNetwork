@@ -2,6 +2,18 @@
     width: 80px;
     height: 80px;
 }
+
 .all {
     padding: 10px;
+    color: DeepSkyBlue
+}
+
+.selectedPage {
+    font-weight: bold;
+    color: cyan;
+
+}
+
+.usersPage {
+    padding: 5px;
 }

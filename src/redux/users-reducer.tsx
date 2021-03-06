@@ -3,27 +3,32 @@ import {ActionTypes} from "./state";
 const FOLLOWED = "FOLLOWED"
 const UNFOLLOWED = "UNFOLLOWED"
 const SET_USERS = "SET_USERS"
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 
 export type UserType = {
     id: number,
     followed: boolean,
     name: string,
     status: string,
-    location: {country:string, city:string},
+    location: { country: string, city: string },
     photos: any
 }
 
 type InitialStateType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 let initialState = {
-    users: [
-
-    ]
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 21,
+    currentPage: 1
 }
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionTypes):InitialStateType => {
+const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case FOLLOWED:
             return {
@@ -48,6 +53,8 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             }
         case SET_USERS:
             return {...state, users: [...state.users, ...action.users]}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
         default:
             return state
     }
@@ -69,6 +76,12 @@ export const setUsersAC = (users: Array<UserType>) => {
     return {
         type: "SET_USERS",
         users: users
+    } as const
+}
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: "SET_CURRENT_PAGE",
+        currentPage: currentPage
     } as const
 }
 
