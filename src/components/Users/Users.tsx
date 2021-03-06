@@ -9,7 +9,8 @@ export type UsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
-    setCurrentPage: (p: number) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
     totalUsersCount: number
     pageSize: number
     currentPage: number
@@ -17,9 +18,19 @@ export type UsersPropsType = {
 
 export class Users extends React.Component <UsersPropsType> {
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users?page?page=${this.props.pageSize}&count=${this.props.totalUsersCount}").then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
             this.props.setUsers(response.data.items)
+            this.props.setTotalUsersCount(response.data.totalCount)
         })
+    }
+
+    onPageChange = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
     }
 
     render() {
@@ -30,14 +41,14 @@ export class Users extends React.Component <UsersPropsType> {
             pages.push(i)
         }
 
+
         return <div className={style.all}>
-            <div>
+            <div className={style.spanPage}>
                 {pages.map(p => {
                     // @ts-ignore
-                    return <span className={this.props.currentPage === p && style.selectedPage}
-                                 onClick={() => {
-                                     this.props.setCurrentPage(p)
-                                 }}
+                    return <span className={this.props.currentPage === p ? style.selectedPage : style.usersPage}
+                                 onClick={(e) => {this.onPageChange(p)}}
+                                 style={{cursor: 'pointer'}}
                     >{p}</span>
 
                 })}

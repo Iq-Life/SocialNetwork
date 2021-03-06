@@ -1,5 +1,5 @@
 import sidebarReducer from "./sidebar-reducer";
-import {followedAC, setCurrentPageAC, setUsersAC, unfollowedAC} from "./users-reducer";
+import {followedAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowedAC} from "./users-reducer";
 import dialogsReducer, {addMessageAC, changeNewTextDialogsAC} from "./dialogs-reducer";
 import profileReducer, {addPostAC, changeNewMessagePostTextAC} from "./profile-reducer";
 
@@ -41,7 +41,7 @@ export type StoreType = {
 export type ActionTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changeNewMessagePostTextAC>
     |ReturnType<typeof addMessageAC>| ReturnType<typeof changeNewTextDialogsAC>|
     ReturnType<typeof followedAC>| ReturnType<typeof unfollowedAC>| ReturnType<typeof setUsersAC>|
-    ReturnType<typeof setCurrentPageAC>
+    ReturnType<typeof setCurrentPageAC>| ReturnType<typeof setTotalUsersCountAC>
 
 export let store: StoreType = {
 

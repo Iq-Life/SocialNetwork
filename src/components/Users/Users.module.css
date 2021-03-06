@@ -11,9 +11,13 @@
 .selectedPage {
     font-weight: bold;
     color: cyan;
-
+    margin: 2px;
 }
 
 .usersPage {
     padding: 5px;
+
+}
+.spanPage {
+    margin: 3px;
 }
