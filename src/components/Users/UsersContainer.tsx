@@ -1,22 +1,19 @@
 import React from "react";
+import {followedAC, setCurrentPageAC, setIsFetchingAC, setTotalUsersCountAC,
+    setUsersAC, unfollowedAC, UserType} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import store, {AppStateType} from "../../redux/redux-store";
-import {
-    followedAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowedAC,
-    UserType
-} from "../../redux/users-reducer";
 import axios from "axios";
 import {Users} from "./Users";
+import {Preloader} from "../common/Preloader";
+
 
 type MapStateToPropsType = {
     users: Array<UserType>
     pageSize: number
     totalUsersCount:number
     currentPage: number
+    isFetching:boolean
 }
 
 type MapDispatchToProps = {
@@ -25,6 +22,7 @@ type MapDispatchToProps = {
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching:boolean) => void
 }
 
 export type UsersAPIComponentPropsType = {
@@ -34,15 +32,19 @@ export type UsersAPIComponentPropsType = {
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching:(isFetching: boolean) => void
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 
 class UsersAPIComponent extends React.Component <UsersAPIComponentPropsType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}
+        &count=${this.props.pageSize}`)
             .then(response => {
+                this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
             })
@@ -50,21 +52,27 @@ class UsersAPIComponent extends React.Component <UsersAPIComponentPropsType> {
 
     onPageChange = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        this.props.toggleIsFetching(true)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}
+        &count=${this.props.pageSize}`)
             .then(response => {
+                this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
             })
     }
 
     render() {
-        return <Users totalUsersCount={this.props.totalUsersCount}
-                      users={this.props.users}
-                      pageSize={this.props.pageSize}
+        return <>
+            { this.props.isFetching ? <Preloader /> : null}
+            <Users totalUsersCount={this.props.totalUsersCount}
+                        users={this.props.users}
+                        pageSize={this.props.pageSize}
                       currentPage={this.props.currentPage}
                       onPageChange={this.onPageChange}
                       unfollow={this.props.unfollow}
                       follow={this.props.follow}
-        />
+            />
+        </>
     }
 }
 
@@ -73,7 +81,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 
@@ -93,6 +102,9 @@ let mapDispatchToProps = () => {
         },
         setTotalUsersCount: (totalCount: number) => {
             store.dispatch( (setTotalUsersCountAC(totalCount)))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            store.dispatch( (setIsFetchingAC(isFetching)))
         }
     }
 }
