@@ -2,59 +2,40 @@ import React from "react";
 import avatar from './../../assets/img/ava.png';
 import style from './Users.module.css'
 import {UserType} from "../../redux/users-reducer";
-import axios from "axios";
 
 export type UsersPropsType = {
     users: Array<UserType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: Array<UserType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    onPageChange: (p: number) => void
 }
 
-export class Users extends React.Component <UsersPropsType> {
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-        })
+export let Users = (props: UsersPropsType) => {
+
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
 
-    onPageChange = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.setUsers(response.data.items)
-            })
-    }
 
-    render() {
+    return <div className={style.all}>
+        <div className={style.spanPage}>
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? style.selectedPage : style.usersPage}
+                             onClick={(e) => {
+                                 props.onPageChange(p)
+                             }}
+                             style={{cursor: 'pointer'}}
+                >{p}</span>
 
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-
-
-        return <div className={style.all}>
-            <div className={style.spanPage}>
-                {pages.map(p => {
-                    // @ts-ignore
-                    return <span className={this.props.currentPage === p ? style.selectedPage : style.usersPage}
-                                 onClick={(e) => {this.onPageChange(p)}}
-                                 style={{cursor: 'pointer'}}
-                    >{p}</span>
-
-                })}
-            </div>
-            <div>
-                {this.props.users.map(u => <div key={u.id}>
+            })}
+        </div>
+        <div>
+            {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <img className={style.ava}
@@ -64,14 +45,14 @@ export class Users extends React.Component <UsersPropsType> {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                this.props.unfollow(u.id)
+                                props.unfollow(u.id)
                             }}>Unfollow</button>
                             : <button onClick={() => {
-                                this.props.follow(u.id)
+                                props.follow(u.id)
                             }}>Follow</button>}
                     </div>
                 </span>
-                    <span>
+                <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -81,10 +62,10 @@ export class Users extends React.Component <UsersPropsType> {
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
-                </div>)}
-            </div>
+            </div>)}
         </div>
-    }
+    </div>
+
 }
 
 /*
