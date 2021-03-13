@@ -1,56 +1,43 @@
-import sidebarReducer from "./sidebar-reducer";
-import {
-    followedAC,
-    setCurrentPageAC,
-    setIsFetchingAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowedAC
-} from "./users-reducer";
-import dialogsReducer, {addMessageAC, changeNewTextDialogsAC} from "./dialogs-reducer";
-import profileReducer, {addPostAC, changeNewMessagePostTextAC} from "./profile-reducer";
+import {ActionTypes} from "./redux-store";
 
-export type RooTStateType = {
+/*export type RooTStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPgeType
-    /*usersPage: UsersPageType*/
     sidebar: any
-}
-export type DialogsPgeType = {
+}*/
+
+/*export type DialogsPgeType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageText: string
-}
-export type ProfilePageType = {
+}*/
+/*export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
-}
-export type PostsType = {
+}*/
+/*export type PostsType = {
     id: number
     message: string
     like: number
-}
-export type DialogsType = {
+}*/
+/*export type DialogsType = {
     id: number
     name: string
-}
-export type MessagesType = {
+}*/
+/*export type MessagesType = {
     id: number
     message: string
-}
-export type StoreType = {
+}*/
+/*export type StoreType = {
     _state: RooTStateType
     getState: () => RooTStateType
     subscribe: (observer: any) => void
     _callSubscriber: (state: RooTStateType) => void
     dispatch: (action: ActionTypes) => void
-}
-export type ActionTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changeNewMessagePostTextAC> |
-    ReturnType<typeof addMessageAC>| ReturnType<typeof changeNewTextDialogsAC>|
-    ReturnType<typeof followedAC>| ReturnType<typeof unfollowedAC>| ReturnType<typeof setUsersAC>|
-    ReturnType<typeof setCurrentPageAC>| ReturnType<typeof setTotalUsersCountAC>|
-    ReturnType<typeof setIsFetchingAC>
+}*/
 
+
+/*
 export let store: StoreType = {
 
     _state: {
@@ -99,4 +86,4 @@ export let store: StoreType = {
         this._state.sidebar = sidebarReducer
         this._callSubscriber(this._state)
     }
-}
+}*/

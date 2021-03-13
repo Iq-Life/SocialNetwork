@@ -1,9 +1,8 @@
 import React from 'react';
 import s from './Dialog.module.css';
 import DialogItem from "./DialogItem/DialogItem";
+import {DialogsPgeType} from "../../redux/dialogs-reducer";
 import Message from "./Message/Message";
-import {DialogsPgeType} from "../../redux/state";
-
 
 type DialogsType = {
     dialogsPage: DialogsPgeType

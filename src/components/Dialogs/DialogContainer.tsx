@@ -1,9 +1,9 @@
 import React from 'react';
-import {addMessageAC, changeNewTextDialogsAC} from "../../redux/dialogs-reducer";
+import {addMessageAC, changeNewTextDialogsAC, DialogsPgeType} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import Dialogs from "./Dialog";
 import store, {AppStateType} from "../../redux/redux-store";
-import {DialogsPgeType} from "../../redux/state";
+
 
 type IMapStateToProps ={
     dialogsPage: DialogsPgeType

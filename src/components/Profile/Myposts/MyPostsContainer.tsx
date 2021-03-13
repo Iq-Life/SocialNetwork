@@ -2,8 +2,13 @@ import React from "react";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import store, {AppStateType} from "../../../redux/redux-store";
-import {PostsType} from "../../../redux/state";
 import {addPostAC, changeNewMessagePostTextAC} from "../../../redux/profile-reducer";
+
+export type PostsType = {
+    id: number
+    message: string
+    like: number
+}
 
 type IMapStateToPropsType = {
     posts: Array<PostsType>

@@ -1,6 +1,9 @@
-import {ActionTypes, DialogsType} from "./state";
+import {ActionTypes} from "./redux-store";
 
-
+export type DialogsType = {
+    id: number
+    name: string
+}
 export type MessagesType = {
     id: number
     message: string
