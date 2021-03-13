@@ -1,8 +1,8 @@
 import React from "react";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import store, {AppStateType} from "../../../redux/redux-store";
-import {addPostAC, changeNewMessagePostTextAC} from "../../../redux/profile-reducer";
+import {AppStateType} from "../../../redux/redux-store";
+import {addPost, updateNewPostText} from "../../../redux/profile-reducer";
 
 export type PostsType = {
     id: number
@@ -25,17 +25,7 @@ let mapStateToProps = (state: AppStateType) => {
         newPostText: state.profilePage.newPostText
     }
 }
-let mapDispatchToProps = () => {
-    return {
-        addPost: (newPostText: string) => {
-            store.dispatch(addPostAC(newPostText))
-        },
-        updateNewPostText: (newPostText: string) => {
-            store.dispatch(changeNewMessagePostTextAC(newPostText))
-        }
-    }
-}
 
 const MyPostsContainer = connect<IMapStateToPropsType, IMapDispatchToProps, {}, AppStateType>
-(mapStateToProps, mapDispatchToProps)(MyPosts);
+(mapStateToProps, {addPost, updateNewPostText})(MyPosts);
 export default MyPostsContainer;

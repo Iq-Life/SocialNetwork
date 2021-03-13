@@ -8,7 +8,7 @@ type DialogsType = {
     dialogsPage: DialogsPgeType
     newMessageText: string
     addMessage:()=>void
-    updateNewMessageText : (newMessageText:string)=> void
+    changeNewTextDialogs : (newMessageText:string)=> void
 }
 
 function Dialogs(props: DialogsType) {
@@ -27,7 +27,7 @@ function Dialogs(props: DialogsType) {
     let onMessageChange = () => {
         if (newMessageElement.current) {
             let newMessageText = newMessageElement.current.value
-            props.updateNewMessageText(newMessageText)
+            props.changeNewTextDialogs(newMessageText)
             newMessageElement.current.value = ""
         }
     }

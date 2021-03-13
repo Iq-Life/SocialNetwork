@@ -45,13 +45,13 @@ const profileReducer = (state = initialState, action: ActionTypes):ProfilePageTy
 }
 
 
-export const addPostAC = (postText: string) => {
+export const addPost = (postText: string) => {
     return {
         type: "ADD_POST",
         postText: postText
     } as const
 }
-export const changeNewMessagePostTextAC = (newPostText: string) => {
+export const updateNewPostText = (newPostText: string) => {
     return {
         type: 'UPDATE_NEW_POST_TEXT',
         newPostText: newPostText
