@@ -1,13 +1,11 @@
+.all {
+    padding: 10px;
+    color: DeepSkyBlue;
+}
 .ava {
     width: 80px;
     height: 80px;
 }
-
-.all {
-    padding: 10px;
-    color: DeepSkyBlue
-}
-
 .selectedPage {
     font-weight: bold;
     color: cyan;
@@ -16,8 +14,18 @@
 
 .usersPage {
     padding: 5px;
-
 }
 .spanPage {
+    display: flex;
+    width: 200px;
     margin: 3px;
+}
+.users {
+    display: flex;
+    justify-content: center;
+    border: 1px solid Cyan;
+
+}
+span {
+    size: 100px;
 }

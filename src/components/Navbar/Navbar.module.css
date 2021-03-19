@@ -1,7 +1,8 @@
 .nav {
-    grid-area: n;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
     background-color: DimGrey;
-    margin-left: 5px;
     border-radius: 25px;
     border:1px solid Cyan;
 }
@@ -9,7 +10,7 @@
     color: #00BFFF;
     padding: 10px 0px;
     text-align: center;
-
+    font-size: 15px;
 }
 .item a{
     text-decoration: none;

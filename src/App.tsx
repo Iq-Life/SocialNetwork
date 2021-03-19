@@ -16,21 +16,23 @@ function App() {
 
     return <div className="all">
         <div className='app-wrapper'>
-            <Header/>
-            <Navbar/>
-            <div className='app-wrapper-content'>
-                <Route path='/dialogs'
-                       render={() => <DialogsContainer/>}/>
-                <Route path='/profile/:userId?'
-                       render={() => <ProfileContainer />}/>
-                <Route path='/users'
-                       render={() => <UsersContainer/>}/>
-                <Route path='/settings'
-                       render={() => <Settings/>}/>
-                <Route path='/news'
-                       render={() => <News/>}/>
-                <Route path='/music'
-                       render={() => <Music/>}/>
+            <div className='header'><Header/></div>
+            <div className="NavAndDisp">
+                <div className="navbar"><Navbar/></div>
+                <div className='display'>
+                    <Route path='/dialogs'
+                           render={() => <DialogsContainer/>}/>
+                    <Route path='/profile/:userId?'
+                           render={() => <ProfileContainer/>}/>
+                    <Route path='/users'
+                           render={() => <UsersContainer/>}/>
+                    <Route path='/settings'
+                           render={() => <Settings/>}/>
+                    <Route path='/news'
+                           render={() => <News/>}/>
+                    <Route path='/music'
+                           render={() => <Music/>}/>
+                </div>
             </div>
         </div>
 

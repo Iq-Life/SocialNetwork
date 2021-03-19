@@ -1,8 +1,9 @@
 .description{
     padding: 10px;
 }
-img.head {
-    width: 650px;
-    height: 300px;
-    margin: 5px 50px;
+.head img {
+    width: 100%;
+    height: 10%;
+    border-radius: 25px;
+    margin-top: 5px;
 }

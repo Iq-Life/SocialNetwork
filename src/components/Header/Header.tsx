@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Header.module.css';
-import lo from './../../assets/img/13.jpg';
+import lo from './../../assets/img/head1.jpg';
 
 function Header() {
     return <header className={s.header}>

@@ -1,19 +1,25 @@
 .app-wrapper {
-    display: grid;
-    margin: 0 auto;
-    width: auto;
-    grid-template-areas:
-"h h "
-"n c";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
     background-color: #191919;
+    right: 100%;
+    left: 100%;
     color: Cyan;
+    margin: 0 100px;
 }
 
-.app-wrapper-content {
-    grid-area: c;
+.navbar {
+padding-right: 5px;
+}
+.NavAndDisp {
+    display: flex;
+}
+
+.display {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-shrink: revert;
     margin-right: 5px;
     background-color: DimGrey;
     border: 1px solid Cyan;
@@ -21,5 +27,5 @@
 }
 .all {
     background-color: #191919;
-    min-height: 100vh;
+    size: 100vh;
 }

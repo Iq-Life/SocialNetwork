@@ -18,8 +18,8 @@ export function ProfileInfo(props:ProfileInfoType) {
 
     return (
     <div>
-        <div><img className={s.head} src={lo} alt="I"/></div>
-        <div>Name: {props.profile.fullName}</div>
+        <div className={s.head}><img  src={lo} alt="I"/></div>
+        <div><h4>Name: </h4><p>{props.profile.fullName}</p></div>
         <img src={props.profile.photos.large}  alt={"user avatar"}/>
         <div>About me: {props.profile.aboutMe}</div>
         <div>Looking for a job: {props.profile.lookingForAJob?

@@ -34,7 +34,7 @@ export let Users = (props: UsersPropsType) => {
 
             })}
         </div>
-        <div>
+        <div className={style.users}>
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
