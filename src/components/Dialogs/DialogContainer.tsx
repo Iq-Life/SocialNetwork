@@ -5,11 +5,11 @@ import Dialogs from "./Dialog";
 import {AppStateType} from "../../redux/redux-store";
 
 
-type IMapStateToProps ={
+type MapStateToProps = {
     dialogsPage: DialogsPgeType
     newMessageText: string
 }
-type IMapDispatchToProps ={
+type MapDispatchToProps = {
     changeNewTextDialogs: (newMessageText: string) => void
     addMessage: any
 }
@@ -21,7 +21,7 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
-    const DialogsContainer = connect<IMapStateToProps, IMapDispatchToProps, {}, AppStateType>
-    (mapStateToProps, {changeNewTextDialogs, addMessage})(Dialogs);
+const DialogsContainer = connect<MapStateToProps, MapDispatchToProps, {}, AppStateType>
+(mapStateToProps, {changeNewTextDialogs, addMessage})(Dialogs);
 
-    export default DialogsContainer;
+export default DialogsContainer;

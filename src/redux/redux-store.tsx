@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import profileReducer, {addPost, updateNewPostText} from "./profile-reducer";
+import profileReducer, {addPost, setUserProfile, updateNewPostText} from "./profile-reducer";
 import dialogsReducer, {addMessage, changeNewTextDialogs} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer, {followed, setCurrentPage, toggleIsFetching,
@@ -9,7 +9,7 @@ export type ActionTypes = ReturnType<typeof addPost>|ReturnType<typeof updateNew
     ReturnType<typeof addMessage>| ReturnType<typeof changeNewTextDialogs>|
     ReturnType<typeof followed>| ReturnType<typeof unfollowed>| ReturnType<typeof setUsers>|
     ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount>|
-    ReturnType<typeof toggleIsFetching>
+    ReturnType<typeof toggleIsFetching>| ReturnType<typeof setUserProfile>
 
 export let reducersBatch= combineReducers({
     profilePage: profileReducer,

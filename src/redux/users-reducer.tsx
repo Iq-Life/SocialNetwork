@@ -13,7 +13,7 @@ export type UserType = {
     name: string,
     status: string,
     location: { country: string, city: string },
-    photos: any
+    photos: {small:string, large: string}
 }
 
 type InitialStateType = {

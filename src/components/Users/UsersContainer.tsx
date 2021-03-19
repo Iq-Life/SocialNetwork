@@ -89,7 +89,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 const UsersContainer = connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>
-(mapStateToProps, {
-    followed, unfollowed, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching
-})(UsersAPIComponent)
+(mapStateToProps, {followed, unfollowed, setUsers, setCurrentPage,
+    setTotalUsersCount, toggleIsFetching})(UsersAPIComponent)
 export default UsersContainer
