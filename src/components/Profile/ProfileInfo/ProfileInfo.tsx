@@ -15,6 +15,7 @@ export function ProfileInfo(props:ProfileInfoType) {
     if (!props.profile) {
         return <Preloader/>
     }
+
     return (
     <div>
         <div><img className={s.head} src={lo} alt="I"/></div>
@@ -22,9 +23,9 @@ export function ProfileInfo(props:ProfileInfoType) {
         <img src={props.profile.photos.large}  alt={"user avatar"}/>
         <div>About me: {props.profile.aboutMe}</div>
         <div>Looking for a job: {props.profile.lookingForAJob?
-            <img src={YES} alt={"Yes"} width={30} height={30}/> : <img src={NO} alt={"No"} width={30} height={30}/> }</div>
+            <img src={YES} alt={"Yes"} width={30} height={30}/> : <img src={NO} alt={"No"} width={30} height={30}/> }
+        </div>
         <div>Looking for a job description: {props.profile.lookingForAJobDescription}</div>
-
         <div className={s.description}>ava + description</div>
     </div>
     )}
