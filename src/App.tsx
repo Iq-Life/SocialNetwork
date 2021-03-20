@@ -9,6 +9,7 @@ import Music from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 
     return <div className="all">
         <div className='app-wrapper'>
-            <div className='header'><Header/></div>
+            <div className='header'><HeaderContainer /></div>
             <div className="NavAndDisp">
                 <div className="navbar"><Navbar/></div>
                 <div className='display'>

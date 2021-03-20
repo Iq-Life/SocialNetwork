@@ -1,13 +1,38 @@
 .header {
-    margin-bottom: 5px;
     display: flex;
-    height: 80px;
-}
-
-.header img {
-    height: 100%;
-    width: 100%;
-    object-fit:fill;
+    height: 100px;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
+
+.backImg {
+    background: url('./../../assets/img/head1.jpg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 70px;
+    object-fit:fill;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.loginBock {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20%;
+    height: 90%;
+}
+.loginBock a.activeLink {
+    color: Cyan;
+}
+.loginBock a{
+    font: normal 1em Arial, sans-serif;
+    color: aliceblue; /* Цвет текста, совпадает с цветом фона */
+    text-shadow: #fff -1px -1px 0,
+    #333 1px 1px 0;
+}
+
+
