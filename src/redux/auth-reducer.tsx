@@ -7,12 +7,14 @@ export type InitialStateType = {
     id: null
     email: null
     login: null
+    isFetching: boolean
 }
 
 let initialState : InitialStateType= {
     id: null,
     email: null,
-    login: null
+    login: null,
+    isFetching: false
 }
 
 const authReducer = (state = initialState, action : ActionTypes) : InitialStateType=> {
@@ -20,14 +22,15 @@ const authReducer = (state = initialState, action : ActionTypes) : InitialStateT
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isFetching: true
             }
         default:
             return state
     }
 }
 
-export const setUserData = ({id, email, login}: InitialStateType) => {
+export const setAuthUserData = ({id, email, login}: InitialStateType) => {
     return {
         type: SET_USER_DATA,
         data: {id, email, login}

@@ -9,7 +9,6 @@ import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader";
 
-
 type MapStateToPropsType = {
     users: Array<UserType>
     pageSize: number

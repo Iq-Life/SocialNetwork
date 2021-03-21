@@ -34,5 +34,15 @@
     text-shadow: #fff -1px -1px 0,
     #333 1px 1px 0;
 }
-
+.loginBockAuthorized{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20%;
+    height: 90%;
+    font: normal 1em Arial, sans-serif;
+    color: aliceblue; /* Цвет текста, совпадает с цветом фона */
+    text-shadow: #fff -1px -1px 0,
+    #333 1px 1px 0;
+}
 
