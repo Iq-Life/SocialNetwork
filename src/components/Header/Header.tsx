@@ -3,7 +3,7 @@ import s from './Header.module.css';
 import { NavLink } from "react-router-dom";
 
 type HeaderType ={
-    login: null
+    login: string|null
     isFetching: boolean
 }
 

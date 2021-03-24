@@ -44,5 +44,6 @@
     color: aliceblue; /* Цвет текста, совпадает с цветом фона */
     text-shadow: #fff -1px -1px 0,
     #333 1px 1px 0;
+    border: olivedrab 1px solid;
 }
 

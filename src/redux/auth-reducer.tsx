@@ -2,11 +2,10 @@ import {ActionTypes} from "./redux-store";
 
 const SET_USER_DATA = "SET_USER_DATA"
 
-
 export type InitialStateType = {
-    id: null
-    email: null
-    login: null
+    id: number|null
+    email: string|null
+    login: string|null
     isFetching: boolean
 }
 

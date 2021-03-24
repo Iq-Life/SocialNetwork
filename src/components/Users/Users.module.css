@@ -17,8 +17,9 @@
 }
 .spanPage {
     display: flex;
-    width: 200px;
-    margin: 3px;
+    flex-wrap: wrap;
+    width: auto;
+
 }
 .users {
     display: flex;

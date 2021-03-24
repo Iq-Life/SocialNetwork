@@ -5,15 +5,15 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {setAuthUserData} from "../../redux/auth-reducer";
 
-type HeaderContainerType = MapStateToProps & MapDispatchToProps
 
 type MapStateToProps = {
-    login: null
+    login: string|null
     isFetching: boolean
 }
 type MapDispatchToProps = {
-    setAuthUserData: (id: null, email: null, login: null) => void
+    setAuthUserData: (id: number|null, email: string|null, login: string|null) => void
 }
+type HeaderContainerType = MapStateToProps & MapDispatchToProps
 
 class HeaderContainer extends React.Component <HeaderContainerType> {
 
@@ -30,7 +30,7 @@ class HeaderContainer extends React.Component <HeaderContainerType> {
     }
 
     render() {
-        return <Header {...this.props} />
+        return <Header {...this.props} login={this.props.login}/>
     }
 }
 

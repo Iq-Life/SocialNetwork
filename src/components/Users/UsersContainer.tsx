@@ -26,7 +26,8 @@ type MapDispatchToProps = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-export type UsersAPIComponentPropsType = {
+export type UsersAPIComponentPropsType = MapDispatchToProps & MapStateToPropsType
+/*{
     users: Array<UserType>
     followed: (userId: number) => void
     unfollowed: (userId: number) => void
@@ -38,7 +39,7 @@ export type UsersAPIComponentPropsType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
-}
+}*/
 
 class UsersAPIComponent extends React.Component <UsersAPIComponentPropsType> {
     componentDidMount() {
