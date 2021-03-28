@@ -14,10 +14,14 @@ export const userAPI = {
    getUsers(currentPage=1, pageSize= 10) {
       return instance.get(`users?page=${currentPage}&count=${pageSize}`)
           .then(response=>response.data)
+   },
+   postUsers(id:number) {
+      return instance.post(`follow/${id}`)
+          .then(response=>response.data)
+   },
+   deleteUsers(id:number) {
+      return instance.delete(`follow/${id}`)
+          .then(response=>response.data)
    }
 }
 
-export const getUsers2 = (currentPage=1, pageSize= 10) => {
-   return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-       .then(response=>response.data)
-}
