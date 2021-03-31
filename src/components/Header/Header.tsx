@@ -11,7 +11,8 @@ function Header(props:HeaderType) {
     return <div className={s.backImg}>
     <header className={s.header}>
         <div className={s.loginBock}>
-            { props.isFetching ? <div className={s.loginBockAuthorized}>{props.login}</div> : <NavLink to={"/login"}>LogIN</NavLink> }
+            { props.isFetching ? <div className={s.loginBockAuthorized}>{props.login}</div>
+                : <NavLink to={"/login"}>LogIN</NavLink> }
         </div>
     </header>
         </div>

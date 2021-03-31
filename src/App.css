@@ -27,5 +27,6 @@ padding-right: 5px;
 }
 .all {
     background-color: #191919;
-    size: 100vh;
+
+    height: 100vh;
 }

@@ -1,6 +1,8 @@
 import React from "react";
-import { followed, setCurrentPage, toggleIsFetching, setTotalUsersCount,
-    setUsers, unfollowed, UserType } from "../../redux/users-reducer";
+import {
+    followed, setCurrentPage, toggleIsFetching, setTotalUsersCount,
+    setUsers, unfollowed, UserType, toggleFollowingInProgress
+} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
@@ -14,6 +16,7 @@ type MapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 type MapDispatchToProps = {
@@ -23,6 +26,7 @@ type MapDispatchToProps = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleFollowingInProgress: (isFetching: boolean, id:number) => void
 }
 
 export type UsersAPIComponentPropsType = MapDispatchToProps & MapStateToPropsType
@@ -55,6 +59,8 @@ class UsersAPIComponent extends React.Component <UsersAPIComponentPropsType> {
                    onPageChange={this.onPageChange}
                    unfollow={this.props.unfollowed}
                    follow={this.props.followed}
+                   followingInProgress={this.props.followingInProgress}
+                   toggleFollowingInProgress={this.props.toggleFollowingInProgress}
             />
         </>
     }
@@ -66,13 +72,14 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
 const UsersContainer = connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>
 (mapStateToProps, {
     followed, unfollowed, setUsers, setCurrentPage,
-    setTotalUsersCount, toggleIsFetching
+    setTotalUsersCount, toggleIsFetching, toggleFollowingInProgress
 })(UsersAPIComponent)
 export default UsersContainer

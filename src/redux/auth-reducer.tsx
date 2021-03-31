@@ -29,7 +29,7 @@ const authReducer = (state = initialState, action : ActionTypes) : InitialStateT
     }
 }
 
-export const setAuthUserData = ({id, email, login}: InitialStateType) => {
+export const setAuthUserData = (id:number|null, email: string|null, login: string|null ) => {
     return {
         type: SET_USER_DATA,
         data: {id, email, login}

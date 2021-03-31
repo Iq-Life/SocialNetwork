@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 const instance = axios.create({
    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
    withCredentials: true,
@@ -25,3 +23,16 @@ export const userAPI = {
    }
 }
 
+export const headersAPI = {
+   getHeaders(){
+      return instance.get('me')
+          .then(response=>response.data)
+   }
+}
+
+export const profileAPI = {
+   getProfile(){
+      return instance.get('profile/' )
+          .then(response=>response.data)
+   }
+}
