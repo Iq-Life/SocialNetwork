@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import profileReducer, {addPost, setUserProfile, updateNewPostText} from "./profile-reducer";
 import dialogsReducer, {addMessage, changeNewTextDialogs} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
@@ -7,6 +7,7 @@ import usersReducer, {
     setTotalUsersCount, setUsers, unfollowed, toggleFollowingInProgress
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
+import thunkMiddleware from "redux-thunk";
 
 export type ActionTypes = ReturnType<typeof addPost>|ReturnType<typeof updateNewPostText> |
     ReturnType<typeof addMessage>| ReturnType<typeof changeNewTextDialogs>|
@@ -24,7 +25,7 @@ export let reducersBatch= combineReducers({
 
 });
 
-let store = createStore(reducersBatch);
+let store = createStore(reducersBatch, applyMiddleware(thunkMiddleware));
 
 export type AppStateType = ReturnType<typeof reducersBatch>
 
