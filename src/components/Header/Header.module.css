@@ -40,10 +40,10 @@
     align-items: center;
     width: 20%;
     height: 90%;
-    font: normal 1em Arial, sans-serif;
+    letter-spacing:0.2em;
+    font: normal 0.9em Arial, sans-serif;
     color: aliceblue; /* Цвет текста, совпадает с цветом фона */
-    text-shadow: #fff -1px -1px 0,
+    text-shadow: #cbcbcb -1px -1px 0,
     #333 1px 1px 0;
-    border: olivedrab 1px solid;
 }
 

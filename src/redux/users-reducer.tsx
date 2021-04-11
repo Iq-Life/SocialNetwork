@@ -75,19 +75,18 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
                     : state.followingInProgress.filter(id => id != action.userId)
             }
         }
-
         default:
             return state
     }
 }
 
- const followSuccess = (usersID: number) => {
+export  const followSuccess = (usersID: number) => {
     return {
         type: "FOLLOWED",
         usersID: usersID
     } as const
 }
- const unfollowSuccess = (usersID: number) => {
+ export const unfollowSuccess = (usersID: number) => {
     return {
         type: "UNFOLLOWED",
         usersID: usersID
