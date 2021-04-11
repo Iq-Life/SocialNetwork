@@ -13,26 +13,26 @@ export const userAPI = {
       return instance.get(`users?page=${currentPage}&count=${pageSize}`)
           .then(response=>response.data)
    },
-   postUsers(id:number) {
-      return instance.post(`follow/${id}`)
+   follow(userId:number) {
+      return instance.post(`follow/${userId}`)
           .then(response=>response.data)
    },
-   deleteUsers(id:number) {
-      return instance.delete(`follow/${id}`)
+   unfollow(userId:number) {
+      return instance.delete(`follow/${userId}`)
           .then(response=>response.data)
-   }
+   },
+   getProfile(userId:string){
+         return instance.get('profile/' + userId )
+             .then(response=>response.data)
+      }
+
 }
 
-export const headersAPI = {
-   getHeaders(){
-      return instance.get('me')
-          .then(response=>response.data)
-   }
-}
 
-export const profileAPI = {
-   getProfile(){
-      return instance.get('profile/' )
+
+export const authAPI = {
+   me(){
+      return instance.get('auth/me')
           .then(response=>response.data)
    }
 }

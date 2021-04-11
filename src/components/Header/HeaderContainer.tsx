@@ -2,8 +2,7 @@ import React from "react";
 import Header from "./Header";
 import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {setAuthUserData} from "../../redux/auth-reducer";
-import {headersAPI} from "../../api/api";
+import {getAutUserData} from "../../redux/auth-reducer";
 
 
 type MapStateToProps = {
@@ -11,19 +10,14 @@ type MapStateToProps = {
     isFetching: boolean
 }
 type MapDispatchToProps = {
-    setAuthUserData: (id: number|null, email: string|null, login: string|null) => void
+    getAutUserData: () => void
 }
 type HeaderContainerType = MapStateToProps & MapDispatchToProps
 
 class HeaderContainer extends React.Component <HeaderContainerType> {
 
     componentDidMount() {
-        headersAPI.getHeaders().then(data => {
-                if (data.resultCode === 0) {
-                    let {id, email, login} = data.data
-                    this.props.setAuthUserData(id, email, login)
-                }
-            })
+        this.props.getAutUserData()
     }
 
     render() {
@@ -40,4 +34,4 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => {
 
 
 export default connect<MapStateToProps, MapDispatchToProps, {}, AppStateType>
-(mapStateToProps, {setAuthUserData})(HeaderContainer)
+(mapStateToProps, {getAutUserData})(HeaderContainer)

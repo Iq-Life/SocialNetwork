@@ -3,7 +3,6 @@ import avatar from './../../assets/img/ava.png';
 import style from './Users.module.css'
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {userAPI} from "../../api/api";
 
 export type UsersPropsType = {
     users: Array<UserType>
@@ -13,7 +12,6 @@ export type UsersPropsType = {
     pageSize: number
     currentPage: number
     onPageChange: (p: number) => void
-    toggleFollowingInProgress: (isFetching: boolean, id: number) => void
     followingInProgress: Array<number>
 }
 
@@ -37,25 +35,14 @@ export let Users = (props: UsersPropsType) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button disabled={props.followingInProgress.some( id => id === u.id)} onClick={() => {
-                                props.toggleFollowingInProgress(true, u.id)
-                                userAPI.deleteUsers(u.id).then(data => {
-                                    if (data.resultCode == 0) {
-                                        props.unfollow(u.id)
-                                    }
-                                    props.toggleFollowingInProgress(false, u.id)
-                                })
-                            }}>Unfollow</button>
-                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)}
                                       onClick={() => {
-                                props.toggleFollowingInProgress(true, u.id)
-                                userAPI.postUsers(u.id).then(data => {
-                                    if (data.resultCode == 0) {
-                                        props.follow(u.id)
-                                    }
-                                    props.toggleFollowingInProgress(false, u.id)
-                                })
-                            }}>Follow</button>}
+                                          props.unfollow(u.id)
+                                      }}>
+                                Unfollow</button>
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {props.follow(u.id)}}>
+                                Follow</button>}
                                 </div>
                                 </span>
                 <span>

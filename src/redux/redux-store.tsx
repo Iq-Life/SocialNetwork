@@ -3,18 +3,20 @@ import profileReducer, {addPost, setUserProfile, updateNewPostText} from "./prof
 import dialogsReducer, {addMessage, changeNewTextDialogs} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer, {
-    followed, setCurrentPage, toggleIsFetching,
-    setTotalUsersCount, setUsers, unfollowed, toggleFollowingInProgress
+    followSuccess, setCurrentPage, toggleIsFetching,
+    setTotalUsersCount, setUsers, unfollowSuccess, toggleFollowingInProgress
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
-import thunkMiddleware from "redux-thunk";
+import thunkMiddleware, {ThunkAction} from "redux-thunk";
 
 export type ActionTypes = ReturnType<typeof addPost>|ReturnType<typeof updateNewPostText> |
     ReturnType<typeof addMessage>| ReturnType<typeof changeNewTextDialogs>|
-    ReturnType<typeof followed>| ReturnType<typeof unfollowed>| ReturnType<typeof setUsers>|
+    ReturnType<typeof followSuccess>| ReturnType<typeof unfollowSuccess>| ReturnType<typeof setUsers>|
     ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount>|
     ReturnType<typeof toggleIsFetching>| ReturnType<typeof setUserProfile>|
     ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>
+
+export type ThunksType = ThunkAction<void, AppStateType , unknown, ActionTypes>;
 
 export let reducersBatch= combineReducers({
     profilePage: profileReducer,
