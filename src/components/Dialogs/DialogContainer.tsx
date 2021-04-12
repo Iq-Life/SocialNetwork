@@ -3,27 +3,27 @@ import {addMessage, changeNewTextDialogs, DialogsPgeType} from "../../redux/dial
 import {connect} from "react-redux";
 import Dialogs from "./Dialog";
 import {AppStateType} from "../../redux/redux-store";
-
+import {withAuthRedirect} from "../../hoc/AuthRedirect";
 
 type MapStateToProps = {
     dialogsPage: DialogsPgeType
     newMessageText: string
-    isAuth:boolean
 }
 type MapDispatchToProps = {
     changeNewTextDialogs: (newMessageText: string) => void
-    addMessage: any
+    addMessage: (messageText: string)=>void
 }
 
 let mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogsPage,
         newMessageText: state.dialogsPage.newMessageText,
-        isAuth: state.auth.isFetching
     }
 }
 
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+
 const DialogsContainer = connect<MapStateToProps, MapDispatchToProps, {}, AppStateType>
-(mapStateToProps, {changeNewTextDialogs, addMessage})(Dialogs);
+(mapStateToProps, {changeNewTextDialogs, addMessage})(AuthRedirectComponent);
 
 export default DialogsContainer;

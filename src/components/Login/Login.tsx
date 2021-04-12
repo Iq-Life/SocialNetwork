@@ -2,5 +2,5 @@ import React from "react";
 
 export const Login = () => {
 
-    return <h1>Hello I'm Pavel</h1>
+    return <h1>please enter your login</h1>
 }

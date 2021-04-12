@@ -5,7 +5,6 @@ import MyPostsContainer from "./Myposts/MyPostsContainer";
 import {UserProfile} from "../../redux/profile-reducer";
 type ProfileType ={
     profile: null | UserProfile
-    isAuth:boolean
 }
 export function Profile(props: ProfileType) {
 

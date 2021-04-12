@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 type DialogsType = {
     dialogsPage: DialogsPgeType
     newMessageText: string
-    addMessage:()=>void
+    addMessage:(messageText: string)=>void
     changeNewTextDialogs : (newMessageText:string)=> void
     isAuth:boolean
 }
@@ -23,7 +23,7 @@ function Dialogs(props: DialogsType) {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     let onAddMessage = () => {
-        props.addMessage()
+        props.addMessage("")
     }
 
     let onMessageChange = () => {
