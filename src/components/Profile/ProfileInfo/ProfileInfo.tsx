@@ -6,21 +6,25 @@ import YES from './../../../assets/img/yes.png';
 
 import {Preloader} from "../../common/Preloader";
 import {UserProfile} from "../../../redux/profile-reducer";
+import {ProfileStatus} from "../ProfileStatus";
 
 type ProfileInfoType ={
     profile:  null | UserProfile
 }
 
+
+
 export function ProfileInfo(props:ProfileInfoType) {
-    // if (!props.profile) {
-    //     return <Preloader/>
-    // }
+    /* if (!props.profile) {
+      return <Preloader/>
+    }*/
 
     return (
     <div>
-        <div className={s.head}><img  src={lo} alt="I"/></div>
+        {/*<div className={s.head}><img  src={lo} alt="I"/></div>*/}
         <div><h4>Name: </h4><p>{props.profile && props.profile.fullName}</p></div>
         <img src={props.profile ?  props.profile.photos.large : ''}  alt={"user avatar"}/>
+        <ProfileStatus status={"hello"}/>
         <div>About me: {props.profile &&  props.profile.aboutMe}</div>
         <div>Looking for a job: {props.profile &&  props.profile.lookingForAJob?
             <img src={YES} alt={"Yes"} width={30} height={30}/> : <img src={NO} alt={"No"} width={30} height={30}/> }

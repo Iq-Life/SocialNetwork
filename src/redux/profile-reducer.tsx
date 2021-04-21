@@ -91,7 +91,7 @@ export const setUserProfile = (profile: null | UserProfile) => {
     } as const
 }
 
-export const getUserProfile =  (userId: string):ThunksType =>
+export const getUserProfile =  (userId: number):ThunksType =>
     (dispatch) => {
         userAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response.data))
