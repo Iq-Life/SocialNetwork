@@ -13,19 +13,18 @@ type MapDispatchToPropsType = {
     updateStatusProfile: (status: string) => void
      }
 type ProfileContainerAPIType = MapStateToPropsType & MapDispatchToPropsType
-type PathParamsType = { userId: number}
+type PathParamsType = { userId: string}
 
-// @ts-ignore
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerAPIType
 
 class ProfileContainer extends React.Component <PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = 1
+            userId = '12378'
         }
-        this.props.getUserProfile(userId)
-        this.props.getUserStatus(userId)
+        this.props.getUserProfile(+userId)
+        this.props.getUserStatus(+userId)
     }
 
     render() {

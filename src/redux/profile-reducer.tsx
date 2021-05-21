@@ -49,8 +49,6 @@ let initialState : ProfilePageType = {
     status: ""
 }
 
-
-
 const profileReducer = (state = initialState, action: ActionTypes):ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
@@ -105,7 +103,7 @@ export const setStatusProfile = (status: string) => {
 export const getUserProfile =  (userId: number):ThunksType =>
     (dispatch) => {
         userAPI.getProfile(userId).then(response => {
-            dispatch(setUserProfile(response.data))
+            dispatch(setUserProfile(response))
         })
 }
 

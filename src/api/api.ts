@@ -29,7 +29,7 @@ export const userAPI = {
 }
 export const profileAPI = {
    getProfile(userId:number){
-      return instance.get('profile/' + userId ).then(response=>response.data)
+      return instance.get('profile/' + userId ).then(response => response.data)
    },
    getStatus(userId:number){
       return instance.get('profile/status/' + userId )
