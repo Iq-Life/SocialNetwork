@@ -21,12 +21,23 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
     handleFocus = (event: ChangeEvent<HTMLInputElement>) => {
         event.target.select()
     }
-
     onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({status: e.currentTarget.value})
     }
+    addStatusKeyPress = (e: any) => {
+        if (e.key === "Enter") {
+            this.deactivateEditMode()
+        }
+    }
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) {
+        if (prevProps.status !== this.props.status)
+               this.setState({
+                   status: this.props.status
+               })
+    }
 
     render() {
+        console.log("render")
         return <div>
             {!this.state.editMode &&
             <div>
@@ -40,6 +51,7 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
                        onBlur={this.deactivateEditMode}
                        value={this.state.status}
                        onChange={this.onStatusChange}
+                       onKeyPress={this.addStatusKeyPress}
                 />
             </div>
             }
