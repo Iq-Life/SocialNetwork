@@ -8,6 +8,7 @@ import usersReducer, {
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
+import { reducer as formReducer } from "redux-form"
 
 export type ActionTypes = ReturnType<typeof addPost>|ReturnType<typeof updateNewPostText> |
     ReturnType<typeof addMessage>| ReturnType<typeof changeNewTextDialogs>|
@@ -25,7 +26,7 @@ export let reducersBatch= combineReducers({
     usersPage: usersReducer,
     sidebar: sidebarReducer,
     auth: authReducer,
-
+    form: formReducer
 });
 
 let store = createStore(reducersBatch, applyMiddleware(thunkMiddleware));
