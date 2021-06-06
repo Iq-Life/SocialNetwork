@@ -2,14 +2,12 @@ import {ActionTypes, ThunksType} from "./redux-store";
 import {profileAPI, userAPI} from "../api/api";
 
 const ADD_POST = 'ADD_POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPostText: string
-    profile: UserProfile| null
+    profile: UserProfile | null
     status: string
 }
 export type PostsType = {
@@ -27,7 +25,7 @@ export type ContactsUserProfile = {
     github: null,
     mainLink: null
 }
-export type UserProfile ={
+export type UserProfile = {
     aboutMe: string
     contacts: ContactsUserProfile
     lookingForAJob: boolean
@@ -37,34 +35,26 @@ export type UserProfile ={
     photos: { small: string, large: string }
 }
 
-let initialState : ProfilePageType = {
+let initialState: ProfilePageType = {
     posts: [
         {id: 1, message: "Hi, how are you?", like: 56},
         {id: 2, message: "It's my first post", like: 434},
         {id: 3, message: "Blabla", like: 44},
         {id: 4, message: "I lick banana", like: 4554}
     ],
-    newPostText: '',
     profile: null,
     status: ""
 }
 
-const profileReducer = (state = initialState, action: ActionTypes):ProfilePageType => {
+const profileReducer = (state = initialState, action: ActionTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
-            let postText = state.newPostText
             let newPost: PostsType = {
                 id: new Date().getTime(),
-                message: postText,
+                message: action.newPostText,
                 like: 0
             }
-            return {
-                ...state,
-                posts: [ newPost, ...state.posts],
-                newPostText: ""
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.newPostText}
+            return {...state, posts: [newPost, ...state.posts]}
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         case SET_STATUS:
@@ -75,18 +65,13 @@ const profileReducer = (state = initialState, action: ActionTypes):ProfilePageTy
 }
 
 
-export const addPost = (postText: string) => {
+export const addPost = (newPostBody: string) => {
     return {
         type: "ADD_POST",
-        postText: postText
+        newPostText: newPostBody
     } as const
 }
-export const updateNewPostText = (newPostText: string) => {
-    return {
-        type: 'UPDATE_NEW_POST_TEXT',
-        newPostText: newPostText
-    } as const
-}
+
 export const setUserProfile = (profile: null | UserProfile) => {
     return {
         type: 'SET_USER_PROFILE',
@@ -100,27 +85,27 @@ export const setStatusProfile = (status: string) => {
     } as const
 }
 
-export const getUserProfile =  (userId: number):ThunksType =>
+export const getUserProfile = (userId: number): ThunksType =>
     (dispatch) => {
         userAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response))
         })
-}
+    }
 
-export const getUserStatus =  (userId: number):ThunksType =>
+export const getUserStatus = (userId: number): ThunksType =>
     (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
+        profileAPI.getStatus(userId).then(response => {
             dispatch(setStatusProfile(response.data))
         })
-}
+    }
 
-export const updateStatusProfile =  (status: string):ThunksType =>
+export const updateStatusProfile = (status: string): ThunksType =>
     (dispatch) => {
         profileAPI.updateStatus(status).then(response => {
-            if ( response.data.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(setStatusProfile(status))
             }
         })
-}
+    }
 
 export default profileReducer;

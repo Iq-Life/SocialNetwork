@@ -41,15 +41,6 @@ function Dialogs(props: DialogsType) {
                 <div>{messageElements}</div>
                 <div>
                     <AddMessageReduxForm onSubmit={addNewMessage}/>
-                    {/*<textarea
-                        className={s.textMessages}
-                        onChange={onMessageChange}
-                        ref={newMessageElement}
-                        value={props.newMessageText}
-                        placeholder={'Enter Your message'}
-                        onKeyPress={addMessageKeyPress}
-                    />
-                    <button onClick={onAddMessage}>add</button>*/}
                 </div>
             </div>
         </div>
@@ -62,10 +53,10 @@ const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) 
         <div>
             <Field placeholder={"Enter Your message"} name={"newMessageBody"} component={"textarea"}/>
         </div>
-        <button>add</button>
+        <button>add message</button>
     </form>
 }
 
-const AddMessageReduxForm = reduxForm<AddMessageFormType>({form: "message"})(AddMessageForm)
+const AddMessageReduxForm = reduxForm<AddMessageFormType>({form: "newMessageBody"})(AddMessageForm)
 
 export default Dialogs;

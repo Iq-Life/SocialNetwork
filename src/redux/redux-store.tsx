@@ -1,22 +1,20 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import profileReducer, {addPost, setStatusProfile, setUserProfile, updateNewPostText} from "./profile-reducer";
+import profileReducer, {addPost, setStatusProfile, setUserProfile} from "./profile-reducer";
 import dialogsReducer, {addMessage} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import usersReducer, {
-    followSuccess, setCurrentPage, toggleIsFetching,
+import usersReducer, {followSuccess, setCurrentPage, toggleIsFetching,
     setTotalUsersCount, setUsers, unfollowSuccess, toggleFollowingInProgress
 } from "./users-reducer";
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import { reducer as formReducer } from "redux-form"
 
-export type ActionTypes = ReturnType<typeof addPost>|ReturnType<typeof updateNewPostText> |
+export type ActionTypes = ReturnType<typeof addPost>| ReturnType<typeof setStatusProfile>|
     ReturnType<typeof addMessage>| ReturnType<typeof setUsers>|
     ReturnType<typeof followSuccess>| ReturnType<typeof unfollowSuccess>|
     ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount>|
     ReturnType<typeof toggleIsFetching>| ReturnType<typeof setUserProfile>|
-    ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>|
-    ReturnType<typeof setStatusProfile>
+    ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>
 
 export type ThunksType = ThunkAction<void, AppStateType , unknown, ActionTypes>;
 
