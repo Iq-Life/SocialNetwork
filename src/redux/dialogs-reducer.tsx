@@ -11,13 +11,11 @@ export type MessagesType = {
 export type DialogsPgeType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageText: string
 }
 
 const ADD_MESSAGE = 'ADD_MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
 
-let initialState:DialogsPgeType = {
+let initialState: DialogsPgeType = {
     dialogs: [
         {id: 1, name: "Diana"},
         {id: 2, name: "Kirill"},
@@ -31,37 +29,22 @@ let initialState:DialogsPgeType = {
         {id: 3, message: "Yo"},
         {id: 4, message: "Hi"},
         {id: 5, message: "Pi"}
-    ],
-    newMessageText: ''
+    ]
 }
 
-export const dialogsReducer = (state= initialState, action: ActionTypes):DialogsPgeType => {
+export const dialogsReducer = (state = initialState, action: ActionTypes): DialogsPgeType => {
     switch (action.type) {
         case ADD_MESSAGE:
-            let messageText = state.newMessageText
-            let newMessage: MessagesType = {
-                id: new Date().getTime(),
-                message: messageText
-            }
-            return {...state, messages : [...state.messages, newMessage], newMessageText: ""}
-
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {... state, newMessageText: action.newMessageText}
+            return {...state, messages: [...state.messages, {id: 6, message: action.newMessageBody}]}
         default:
             return state
     }
 }
 
-export const addMessage = (messageText: string) => {
+export const addMessage = (newMessageBody: string) => {
     return {
         type: "ADD_MESSAGE",
-        messageText: messageText
-    } as const
-}
-export const changeNewTextDialogs = (newMessageText: string) => {
-    return {
-        type: 'UPDATE_NEW_MESSAGE_TEXT',
-        newMessageText: newMessageText
+        newMessageBody: newMessageBody
     } as const
 }
 
