@@ -65,10 +65,10 @@ const profileReducer = (state = initialState, action: ActionTypes): ProfilePageT
 }
 
 
-export const addPost = (newPostBody: string) => {
+export const addPost = (newPostText: string) => {
     return {
         type: "ADD_POST",
-        newPostText: newPostBody
+        newPostText: newPostText
     } as const
 }
 
