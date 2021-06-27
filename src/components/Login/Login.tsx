@@ -1,25 +1,26 @@
 import React, {FormEvent} from "react";
-import  {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
+import s from "../common/FormsControls.module.css"
 
-type FormDataType ={
+type FormDataType = {
     email: string
-    password:string
+    password: string
     rememberMe: boolean
-    handleSubmit:(event: FormEvent<HTMLFormElement>) => void
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void
 }
-type MapDispatchToProps ={
-    login: (email: string, password:string, rememberMe: boolean) => void
+type MapDispatchToProps = {
+    login: (email: string, password: string, rememberMe: boolean) => void
 }
-type MapStateToProps ={
-    isFetching:boolean
+type MapStateToProps = {
+    isFetching: boolean
 }
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) =>{
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
     return <form onSubmit={props.handleSubmit}>
         <div>
@@ -33,6 +34,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) =>{
         <div>
             <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> remember me
         </div>
+        { props.error && <div className={s.formSummaryError}>
+            {props.error}
+        </div>}
         <div>
             <button>Login</button>
         </div>
@@ -41,13 +45,13 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) =>{
 
 const LoginReduxForm = reduxForm<FormDataType>({form: "email"})(LoginForm)
 
-export const Login: React.FC<MapStateToProps&MapDispatchToProps> = (props) => {
-    const onSubmit = (formData:FormDataType) => {
-        props.login( formData.email, formData.password, formData.rememberMe)
+export const Login: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
+    const onSubmit = (formData: FormDataType) => {
+        props.login(formData.email, formData.password, formData.rememberMe)
         console.log(formData)
     }
-    if (props.isFetching){
-        return <Redirect to={"/profile"} />
+    if (props.isFetching) {
+        return <Redirect to={"/profile"}/>
     }
     return <div>
         <h1>Login</h1>

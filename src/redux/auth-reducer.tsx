@@ -1,5 +1,6 @@
 import {ActionTypes, ThunksType} from "./redux-store";
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = "SET_USER_DATA"
 
@@ -45,9 +46,14 @@ export const getAutUserData = (): ThunksType => (dispatch) => {
     })
 }
 export const login = (email: string, password: string, rememberMe: boolean): ThunksType => (dispatch) => {
+
     authAPI.login(email, password, rememberMe).then(response => {
         if (response.resultCode === 0) {
             dispatch(getAutUserData())
+        }else{
+            let message: string = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+            // @ts-ignore
+            dispatch(stopSubmit("login", {_error: message}))
         }
     })
 }
