@@ -8,13 +8,15 @@ import usersReducer, {followSuccess, setCurrentPage, toggleIsFetching,
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import { reducer as formReducer } from "redux-form"
+import {initializedSuccess} from "./app-reducer";
 
 export type ActionTypes = ReturnType<typeof addPost>| ReturnType<typeof setStatusProfile>|
     ReturnType<typeof addMessage>| ReturnType<typeof setUsers>|
     ReturnType<typeof followSuccess>| ReturnType<typeof unfollowSuccess>|
     ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount>|
     ReturnType<typeof toggleIsFetching>| ReturnType<typeof setUserProfile>|
-    ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>
+    ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>|
+    ReturnType<typeof initializedSuccess>
 
 export type ThunksType = ThunkAction<void, AppStateType , unknown, ActionTypes>;
 
