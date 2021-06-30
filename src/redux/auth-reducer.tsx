@@ -46,14 +46,12 @@ export const getAutUserData = (): ThunksType => (dispatch) => {
     })
 }
 export const login = (email: string, password: string, rememberMe: boolean): ThunksType => (dispatch) => {
-
     authAPI.login(email, password, rememberMe).then(response => {
         if (response.resultCode === 0) {
             dispatch(getAutUserData())
         }else{
-            let message: string = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
-            // @ts-ignore
-            dispatch(stopSubmit("login", {_error: message}))
+             let message: string = response.messages.length > 0 ? response.messages[0] : "Some error"
+            dispatch(stopSubmit<>("login", {_error: message}))
         }
     })
 }

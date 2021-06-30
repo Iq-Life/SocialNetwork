@@ -12,7 +12,8 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
-    handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void,
+    error: string
 }
 type MapDispatchToProps = {
     login: (email: string, password: string, rememberMe: boolean) => void
@@ -21,7 +22,7 @@ type MapStateToProps = {
     isFetching: boolean
 }
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-
+    console.log(props)
     return <form onSubmit={props.handleSubmit}>
         <div>
             <Field placeholder={"Email"} name={"email"}
@@ -43,12 +44,11 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     </form>
 }
 
-const LoginReduxForm = reduxForm<FormDataType>({form: "email"})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
 
 export const Login: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe)
-        console.log(formData)
     }
     if (props.isFetching) {
         return <Redirect to={"/profile"}/>
