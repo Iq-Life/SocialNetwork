@@ -1,13 +1,10 @@
 import React from "react";
-import {
-    follow, getUsersThunkCreator, setCurrentPage, unfollow, UserType
-} from "../../redux/users-reducer";
+import {follow, getUsersThunkCreator, setCurrentPage, unfollow, UserType} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/AuthRedirect";
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -69,5 +66,4 @@ export default compose<React.ComponentType>(
     (mapStateToProps, {
         follow, unfollow, setCurrentPage,  getUsers: getUsersThunkCreator
     }),
-    withAuthRedirect
 )(UsersContainer)

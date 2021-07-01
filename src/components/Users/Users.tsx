@@ -41,7 +41,9 @@ export let Users = (props: UsersPropsType) => {
                                       }}>
                                 Unfollow</button>
                             : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {props.follow(u.id)}}>
+                                      onClick={() => {
+                                          props.follow(u.id)
+                                      }}>
                                 Follow</button>}
                                 </div>
                                 </span>

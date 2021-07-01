@@ -8,7 +8,7 @@ import usersReducer, {followSuccess, setCurrentPage, toggleIsFetching,
 import authReducer, {setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import { reducer as formReducer } from "redux-form"
-import {initializedSuccess} from "./app-reducer";
+import {appReducer, initializedSuccess} from "./app-reducer";
 
 export type ActionTypes = ReturnType<typeof addPost>| ReturnType<typeof setStatusProfile>|
     ReturnType<typeof addMessage>| ReturnType<typeof setUsers>|
@@ -26,7 +26,8 @@ export let reducersBatch= combineReducers({
     usersPage: usersReducer,
     sidebar: sidebarReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 let store = createStore(reducersBatch, applyMiddleware(thunkMiddleware));

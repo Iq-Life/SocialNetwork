@@ -29,6 +29,5 @@ export function ProfileInfo(props:ProfileInfoType) {
             <img src={YES} alt={"Yes"} width={30} height={30}/> : <img src={NO} alt={"No"} width={30} height={30}/> }
         </div>
         <div>Looking for a job description: {props.profile &&  props.profile.lookingForAJobDescription}</div>
-        <div className={s.description}>ava + description</div>
     </div>
     )}

@@ -1,6 +1,4 @@
 import {ActionTypes, ThunksType} from "./redux-store";
-import {userAPI} from "../api/api";
-import {setUserProfile} from "./profile-reducer";
 import {getAutUserData} from "./auth-reducer";
 
 const SET_INITIALIZED = "SET_INITIALIZED"
@@ -31,10 +29,11 @@ export const initializedSuccess = () => {
     } as const
 }
 
-export const initializedApp = (): ThunksType =>
+export const initializeApp = (): ThunksType =>
     (dispatch) => {
-        dispatch(getAutUserData())
-        dispatch(initializedSuccess())
+       let promise = dispatch(getAutUserData())
+        Promise.all([promise])
+            .then(()=>{dispatch(initializedSuccess())})
     }
 
 
