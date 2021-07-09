@@ -51,7 +51,8 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
             dispatch(getAutUserData())
         } else {
             let message: string = response.messages.length > 0 ? response.messages[0] : "Some error"
-            dispatch(stopSubmit<>("login", {_error: message}))
+            // @ts-ignore
+            dispatch(stopSubmit<any>("login", {_error: message}))
         }
     })
 }
