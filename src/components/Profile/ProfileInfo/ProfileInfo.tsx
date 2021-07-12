@@ -5,6 +5,7 @@ import YES from './../../../assets/img/yes.png';
 import {UserProfile} from "../../../redux/profile-reducer";
 import {ProfileStatus} from "../ProfileStatus";
 import {Preloader} from "../../common/Preloader";
+import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 
 type ProfileInfoType ={
     profile:  UserProfile| null
@@ -22,7 +23,7 @@ export function ProfileInfo(props:ProfileInfoType) {
         <div><h4>Name: </h4><p>{props.profile && props.profile.fullName}</p></div>
         <img src={props.profile ?  props.profile.photos.large : ''}  alt={"user avatar"}/>
         <div>Status:
-        <ProfileStatus status={props.status} updateStatusProfile={props.updateStatusProfile}/>
+        <ProfileStatusWithHooks status={props.status} updateStatusProfile={props.updateStatusProfile}/>
         </div>
         <div>About me: {props.profile &&  props.profile.aboutMe}</div>
         <div>Looking for a job: {props.profile &&  props.profile.lookingForAJob?
