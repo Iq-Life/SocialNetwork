@@ -14,6 +14,7 @@
     "@types/redux-form": "^8.3.1",
     "axios": "^0.21.1",
     "final-form": "^4.20.2",
+    "re-reselect": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.3",
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.12"
+    "@types/react-redux": "^7.1.12",
+    "reselect": "^4.0.0"
   }
 }

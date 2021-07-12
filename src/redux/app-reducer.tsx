@@ -14,10 +14,7 @@ let initialState: InitialStateType = {
 export const appReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case SET_INITIALIZED:
-            return {
-                ...state,
-                initialized: true
-            }
+            return {...state, initialized: true}
         default:
             return state
     }
@@ -29,8 +26,7 @@ export const initializedSuccess = () => {
     } as const
 }
 
-export const initializeApp = (): ThunksType =>
-    (dispatch) => {
+export const initializeApp = (): ThunksType => (dispatch) => {
        let promise = dispatch(getAutUserData())
         Promise.all([promise])
             .then(()=>{dispatch(initializedSuccess())})

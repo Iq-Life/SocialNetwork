@@ -21,9 +21,9 @@ class App extends React.Component <AppContainerType> {
     }
 
     render() {
-        if (!this.props.initialize)
+        if (!this.props.initialize) {
             return <Preloader/>
-        else
+        } else {
             return <div className="all">
                 <div className='app-wrapper'>
                     <div className='header'><HeaderContainer/></div>
@@ -48,6 +48,7 @@ class App extends React.Component <AppContainerType> {
                 </div>
 
             </div>
+        }
     }
 }
 
@@ -61,9 +62,5 @@ export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppState
 
 //types
 type AppContainerType = MapStateToPropsType & MapDispatchToPropsType
-type MapStateToPropsType = {
-    initialize: boolean
-}
-type MapDispatchToPropsType = {
-    initializeApp: () => void
-}
+type MapStateToPropsType = { initialize: boolean }
+type MapDispatchToPropsType = { initializeApp: () => void }

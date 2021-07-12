@@ -26,7 +26,7 @@ type MapDispatchToProps = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: (pageNumber: number) => void
-    getUsers: (currentPage: number, pageSize:number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize:number) => void
 }
 
 export type UsersContainerPropsType = MapDispatchToProps & MapStateToPropsType
@@ -34,11 +34,11 @@ export type UsersContainerPropsType = MapDispatchToProps & MapStateToPropsType
 class UsersContainer extends React.Component <UsersContainerPropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChange = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -84,6 +84,5 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 export default compose<React.ComponentType>(
     connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>
     (mapStateToProps, {
-        follow, unfollow, setCurrentPage,  getUsers: getUsersThunkCreator
-    }),
-)(UsersContainer)
+            follow, unfollow, setCurrentPage, getUsersThunkCreator }),
+    )(UsersContainer)
