@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import profileReducer, {addPost, setStatusProfile, setUserProfile} from "./profile-reducer";
+import profileReducer, {addPost, deletePost, setStatusProfile, setUserProfile} from "./profile-reducer";
 import dialogsReducer, {addMessage} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer, {followSuccess, setCurrentPage, toggleIsFetching,
@@ -16,7 +16,7 @@ export type ActionTypes = ReturnType<typeof addPost>| ReturnType<typeof setStatu
     ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount>|
     ReturnType<typeof toggleIsFetching>| ReturnType<typeof setUserProfile>|
     ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>|
-    ReturnType<typeof initializedSuccess>
+    ReturnType<typeof initializedSuccess>|ReturnType<typeof deletePost>
 
 export type ThunksType = ThunkAction<void, AppStateType , unknown, ActionTypes>;
 

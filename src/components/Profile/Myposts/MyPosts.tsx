@@ -11,7 +11,7 @@ type MyPostsType = {
     posts: Array<PostsType>
 }
 
-function MyPosts(props: MyPostsType) {
+const MyPosts = React.memo((props: MyPostsType) => {
 
     let postsElements = props.posts
         .map((post: PostType) => <Post id={post.id} message={post.message} like={post.like} key={post.id}/>)
@@ -37,7 +37,7 @@ function MyPosts(props: MyPostsType) {
             </div>
         </div>
     )
-}
+})
 
 type MyPostFormType = {
     handleSubmit: (event: FormEvent<HTMLFormElement>) => void
