@@ -95,26 +95,23 @@ export const deletePost = (id: number) => {
 }
 
 export const getUserProfile = (userId: number): ThunksType =>
-    (dispatch) => {
-        userAPI.getProfile(userId).then(response => {
+    async(dispatch) => {
+        let response = await userAPI.getProfile(userId)
             dispatch(setUserProfile(response))
-        })
     }
 
 export const getUserStatus = (userId: number): ThunksType =>
-    (dispatch) => {
-        profileAPI.getStatus(userId).then(response => {
+    async(dispatch) => {
+        let response = await profileAPI.getStatus(userId)
             dispatch(setStatusProfile(response.data))
-        })
     }
 
 export const updateStatusProfile = (status: string): ThunksType =>
-    (dispatch) => {
-        profileAPI.updateStatus(status).then(response => {
+    async(dispatch) => {
+        let response = await profileAPI.updateStatus(status)
             if (response.data.resultCode === 0) {
                 dispatch(setStatusProfile(status))
             }
-        })
     }
 
 export default profileReducer;
