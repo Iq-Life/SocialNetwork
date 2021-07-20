@@ -1,6 +1,6 @@
 import React, {FormEvent} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls";
+import {CreateField, Input} from "../common/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
@@ -8,35 +8,14 @@ import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import s from "../common/FormsControls.module.css"
 
-type FormDataType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    handleSubmit: (event: FormEvent<HTMLFormElement>) => void,
-    error: string
-}
-type MapDispatchToProps = {
-    login: (email: string, password: string, rememberMe: boolean) => void
-}
-type MapStateToProps = {
-    isFetching: boolean
-}
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    console.log(props)
-    return <form onSubmit={props.handleSubmit}>
-        <div>
-            <Field placeholder={"Email"} name={"email"}
-                   component={Input} validate={[required]}/>
-        </div>
-        <div>
-            <Field placeholder={"Password"} name={"password"} type={"password"}
-                   component={Input} validate={[required]}/>
-        </div>
-        <div>
-            <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> remember me
-        </div>
-        { props.error && <div className={s.formSummaryError}>
-            {props.error}
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
+    return <form onSubmit={handleSubmit}>
+        {CreateField("Email", "email", [required], Input, null, null)}
+        {CreateField("Password", "password", [required], Input, {type: "password"}, null)}
+        {CreateField(null, "rememberMe", [required], Input,
+            {type: "checkbox"}, "remember me")}
+        { error && <div className={s.formSummaryError}>
+            {error}
         </div>}
         <div>
             <button>Login</button>
@@ -64,3 +43,18 @@ const MapStateToProps = (state: AppStateType) => {
     }
 }
 export default connect(MapStateToProps, {login})(Login)
+
+//types
+type FormDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void,
+    error: string
+}
+type MapDispatchToProps = {
+    login: (email: string, password: string, rememberMe: boolean) => void
+}
+type MapStateToProps = {
+    isFetching: boolean
+}
