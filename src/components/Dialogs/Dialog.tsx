@@ -5,7 +5,7 @@ import {DialogsPgeType} from "../../redux/dialogs-reducer";
 import Message from "./Message/Message";
 import {Redirect} from 'react-router-dom';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Textarea} from "../common/FormsControls";
+import {Textarea} from "../common/formControls/FormsControls";
 import { maxLengthCreator, required} from "../../utils/validators/validators";
 
 type DialogsType = {

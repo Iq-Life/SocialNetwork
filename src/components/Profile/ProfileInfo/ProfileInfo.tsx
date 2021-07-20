@@ -4,7 +4,7 @@ import NO from './../../../assets/img/no.png';
 import YES from './../../../assets/img/yes.png';
 import {UserProfile} from "../../../redux/profile-reducer";
 import {ProfileStatus} from "../ProfileStatus";
-import {Preloader} from "../../common/Preloader";
+import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 
 type ProfileInfoType ={

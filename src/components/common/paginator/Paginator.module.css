@@ -1,0 +1,19 @@
+.selectedPage {
+    font-weight: bold;
+    color: cyan;
+    margin: 2px;
+}
+
+.usersPage {
+    padding: 5px;
+}
+
+.spanPage {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+}
+
+span {
+    size: 100px;
+}

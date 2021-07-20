@@ -3,7 +3,7 @@ import {follow, getUsersThunkCreator, setCurrentPage, unfollow, UserType} from "
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
-import {Preloader} from "../common/Preloader";
+import {Preloader} from "../common/preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPage,

@@ -3,17 +3,7 @@ import avatar from './../../assets/img/ava.png';
 import style from './Users.module.css'
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-
-export type UsersPropsType = {
-    users: Array<UserType>
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    onPageChange: (p: number) => void
-    followingInProgress: Array<number>
-}
+import {Paginator} from "../common/paginator/Paginator";
 
 export let Users = (props: UsersPropsType) => {
 
@@ -22,6 +12,7 @@ export let Users = (props: UsersPropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
     return <div className={style.all}>
         <div className={style.users}>
             {props.users.map(u => <div key={u.id}>
@@ -59,17 +50,19 @@ export let Users = (props: UsersPropsType) => {
                                 </span>
             </div>)}
         </div>
-        <div className={style.spanPage}>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? style.selectedPage : style.usersPage}
-                             onClick={(e) => {
-                                 props.onPageChange(p)
-                             }}
-                             style={{cursor: 'pointer'}}
-                >{p}</span>
-
-            })}
-        </div>
-
+        <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
+                   currentPage={props.pageSize} onPageChange={props.onPageChange}/>
     </div>
+}
+
+//type
+export type UsersPropsType = {
+    users: Array<UserType>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChange: (p: number) => void
+    followingInProgress: Array<number>
 }

@@ -6,26 +6,9 @@
     width: 80px;
     height: 80px;
 }
-.selectedPage {
-    font-weight: bold;
-    color: cyan;
-    margin: 2px;
-}
-
-.usersPage {
-    padding: 5px;
-}
-.spanPage {
-    display: flex;
-    flex-wrap: wrap;
-    width: auto;
-}
 .users {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-bottom: 10px;
-}
-span {
-    size: 100px;
 }
