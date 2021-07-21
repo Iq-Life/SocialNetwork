@@ -4,6 +4,7 @@ import style from './Users.module.css'
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {Paginator} from "../common/paginator/Paginator";
+import {User} from "./User";
 
 export let Users = (props: UsersPropsType) => {
 
@@ -15,40 +16,13 @@ export let Users = (props: UsersPropsType) => {
 
     return <div className={style.all}>
         <div className={style.users}>
-            {props.users.map(u => <div key={u.id}>
-                <span>
-                    <div>
-                        <NavLink to={'/profile/' + u.id}>
-                        <img className={style.ava}
-                             src={u.photos.small != null ? u.photos.small : avatar}
-                             alt="ava"/>
-                        </NavLink>
-                    </div>
-                    <div>
-                        {u.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {
-                                          props.unfollow(u.id)
-                                      }}>
-                                Unfollow</button>
-                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {
-                                          props.follow(u.id)
-                                      }}>
-                                Follow</button>}
-                                </div>
-                                </span>
-                <span>
-                                <span>
-                                <div>{u.name}</div>
-                                <div>{u.status}</div>
-                                </span>
-                                <span>
-                                <div>{"u.location.country"}</div>
-                                <div>{"u.location.city"}</div>
-                                </span>
-                                </span>
-            </div>)}
+            {props.users.map(u => <User
+                key={u.id}
+                user={u}
+                followingInProgress={props.followingInProgress}
+                follow={props.follow}
+                unfollow={props.unfollow}
+            />)}
         </div>
         <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
                    currentPage={props.pageSize} onPageChange={props.onPageChange}/>
