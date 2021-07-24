@@ -1,18 +1,5 @@
 import {ActionTypes} from "./redux-store";
 
-export type DialogsType = {
-    id: number
-    name: string
-}
-export type MessagesType = {
-    id: number
-    message: string
-}
-export type DialogsPgeType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-}
-
 const ADD_MESSAGE = 'ADD_MESSAGE'
 
 let initialState: DialogsPgeType = {
@@ -40,12 +27,19 @@ export const dialogsReducer = (state = initialState, action: ActionTypes): Dialo
             return state
     }
 }
-
+//action
 export const addMessage = (newMessageBody: string) => {
-    return {
-        type: "ADD_MESSAGE",
-        newMessageBody: newMessageBody
-    } as const
+    return {type: "ADD_MESSAGE", newMessageBody: newMessageBody} as const}
+//type
+export type DialogsType = {
+    id: number
+    name: string
 }
-
-export default dialogsReducer;
+export type MessagesType = {
+    id: number
+    message: string
+}
+export type DialogsPgeType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+}

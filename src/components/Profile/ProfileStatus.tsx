@@ -1,10 +1,5 @@
 import React, {ChangeEvent} from "react";
 
-type ProfileStatusType = {
-    status: string
-    updateStatusProfile: (status: string) => void
-}
-
 export class ProfileStatus extends React.Component<ProfileStatusType> {
     state = {
         editMode: false,
@@ -57,4 +52,10 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
             }
         </div>
     }
+}
+
+//type
+type ProfileStatusType = {
+    status: string
+    updateStatusProfile: (status: string) => void
 }

@@ -1,5 +1,4 @@
-import React from 'react'
-import profileReducer, {addPost, deletePost, ProfilePageType} from "../redux/profile-reducer";
+import {profileReducer, addPost, deletePost, ProfilePageType} from "../redux/profile-reducer";
 
 let startState: ProfilePageType
 beforeEach(()=>{

@@ -4,21 +4,7 @@ import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = "SET_USER_DATA"
 
-export type InitialStateType = {
-    id: number | null
-    email: string | null
-    login: string | null
-    isFetching: boolean
-}
-
-let initialState: InitialStateType = {
-    id: null,
-    email: null,
-    login: null,
-    isFetching: false
-}
-
-const authReducer = (state = initialState, action: ActionTypes): InitialStateType => {
+export const authReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {...state, ...action.data}
@@ -26,11 +12,11 @@ const authReducer = (state = initialState, action: ActionTypes): InitialStateTyp
             return state
     }
 }
-
+//action
 export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isFetching: boolean) => {
     return {type: SET_USER_DATA, data: {id, email, login, isFetching}} as const
 }
-
+//thunk
 export const getAutUserData = (): ThunksType => async (dispatch) => {
     let response = await authAPI.me()
 
@@ -49,7 +35,6 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
         dispatch(stopSubmit("login", {_error: message}))
     }
 }
-
 export const logout = (): ThunksType => async (dispatch) => {
     let response = await authAPI.logout()
 
@@ -57,5 +42,16 @@ export const logout = (): ThunksType => async (dispatch) => {
         dispatch(setAuthUserData(null, null, null, false))
     }
 }
-
-export default authReducer
+//type
+export type InitialStateType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isFetching: boolean
+}
+let initialState: InitialStateType = {
+    id: null,
+    email: null,
+    login: null,
+    isFetching: false
+}

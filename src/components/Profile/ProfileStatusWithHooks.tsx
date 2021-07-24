@@ -1,15 +1,10 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 
-type ProfileStatusType = {
-    status: string
-    updateStatusProfile: (status: string) => void
-}
-
-export const ProfileStatusWithHooks =(props:ProfileStatusType) => {
+export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
 
-    useEffect(()=>{
+    useEffect(() => {
         setStatus(props.status)
     }, [props.status])
 
@@ -32,22 +27,28 @@ export const ProfileStatusWithHooks =(props:ProfileStatusType) => {
         }
     }
 
-        return <div>
-            {!editMode &&
-            <div>
-                <span onDoubleClick={activateEditMode}>{props.status || " --- "}</span>
-            </div>
-            }
-            {editMode &&
-            <div>
-                <input onFocus={handleFocus}
-                       autoFocus={true}
-                       onBlur={deactivateEditMode}
-                       value={status}
-                       onChange={onStatusChange}
-                       onKeyPress={addStatusKeyPress}
-                />
-            </div>
-            }
+    return <div>
+        {!editMode &&
+        <div>
+            <span onDoubleClick={activateEditMode}>{props.status || " --- "}</span>
         </div>
-    }
+        }
+        {editMode &&
+        <div>
+            <input onFocus={handleFocus}
+                   autoFocus={true}
+                   onBlur={deactivateEditMode}
+                   value={status}
+                   onChange={onStatusChange}
+                   onKeyPress={addStatusKeyPress}
+            />
+        </div>
+        }
+    </div>
+}
+
+//type
+type ProfileStatusType = {
+    status: string
+    updateStatusProfile: (status: string) => void
+}

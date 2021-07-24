@@ -12,23 +12,6 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
 const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
 
-export type UserType = {
-    id: number,
-    followed: boolean,
-    name: string,
-    status: string,
-    location: { country: string, city: string },
-    photos: { small: string, large: string }
-}
-
-type InitialStateType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-}
 
 let initialState: InitialStateType = {
     users: [],
@@ -39,7 +22,7 @@ let initialState: InitialStateType = {
     followingInProgress: []
 }
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+export const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case FOLLOWED:
             return {
@@ -72,7 +55,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             return state
     }
 }
-
+//action
 export const followSuccess = (usersID: number) => {
     return {type: "FOLLOWED", usersID} as const
 }
@@ -94,7 +77,7 @@ export const toggleIsFetching = (isFetching: boolean) => {
 export const toggleFollowingInProgress = (isFetching: boolean, userId: number) => {
     return {type: "TOGGLE_IS_FOLLOWING_PROGRESS", isFetching, userId} as const
 }
-
+//thunk
 export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunksType =>
     async (dispatch) => {
 
@@ -116,15 +99,28 @@ const _followUnfollowFlow = async (dispatch: Dispatch<ActionTypes>, userId: numb
     }
     dispatch(toggleFollowingInProgress(false, userId))
 }
-
 export const follow = (userId: number): ThunksType =>
     async (dispatch) => {
         _followUnfollowFlow(dispatch, userId, userAPI.follow.bind(userId), followSuccess)
     }
-
 export const unfollow = (userId: number): ThunksType =>
     async (dispatch) => {
         _followUnfollowFlow(dispatch, userId, userAPI.unfollow.bind(userId), unfollowSuccess)
     }
-
-export default usersReducer;
+//type
+export type UserType = {
+    id: number,
+    followed: boolean,
+    name: string,
+    status: string,
+    location: { country: string, city: string },
+    photos: { small: string, large: string }
+}
+type InitialStateType = {
+    users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: Array<number>
+}
