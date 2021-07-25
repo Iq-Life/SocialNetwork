@@ -50,7 +50,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 export default compose<React.ComponentType>(
     connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>
     (mapStateToProps, {
-            follow, unfollow, setCurrentPage, getUsersThunkCreator }),
+            follow, unfollow, setCurrentPage, getUsersThunkCreator })
     )(UsersContainer)
 
 //types

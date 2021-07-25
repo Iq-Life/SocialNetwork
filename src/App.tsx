@@ -26,7 +26,8 @@ class App extends React.Component <AppContainerType> {
         if (!this.props.initialize) {
             return <Preloader/>
         } else {
-            return <div className="all">
+            return (
+            <div className="all">
                 <div className='app-wrapper'>
                     <div className='header'><HeaderContainer/></div>
                     <div className="NavAndDisp">
@@ -48,9 +49,10 @@ class App extends React.Component <AppContainerType> {
                         </div>
                     </div>
                 </div>
-
             </div>
+            )
         }
+
     }
 }
 
@@ -59,14 +61,12 @@ const MapStateToProps = (state: AppStateType): MapStateToPropsType => {
         initialize: state.app.initialized
     }
 }
-
-let AppContainer = compose(
+let AppContainer = compose<React.ComponentType>(
     withRouter,
-connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>
-(MapStateToProps, {initializeApp})(App))
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>
+    (MapStateToProps, {initializeApp}))(App)
 
 export const SamuraiJSApp = (props:any) => {
-
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer />
