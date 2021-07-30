@@ -1,8 +1,6 @@
 import React from "react";
-import avatar from './../../assets/img/ava.png';
 import style from './Users.module.css'
 import {UserType} from "../../redux/users-reducer";
-import {NavLink} from "react-router-dom";
 import {Paginator} from "../common/paginator/Paginator";
 import {User} from "./User";
 
@@ -24,8 +22,9 @@ export let Users = (props: UsersPropsType) => {
                 unfollow={props.unfollow}
             />)}
         </div>
-        <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
-                   currentPage={props.pageSize} onPageChange={props.onPageChange}/>
+        <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
+                   currentPage={props.pageSize} onPageChange={props.onPageChange}
+                   portionSize={15}/>
     </div>
 }
 

@@ -11,9 +11,14 @@
 .spanPage {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: auto;
 }
 
 span {
     size: 100px;
+}
+
+button {
+    border: white 1px solid;
 }
