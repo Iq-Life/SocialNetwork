@@ -21,16 +21,15 @@ export let Paginator = (props: PaginatorType) => {
             back</button>}
         {pages
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map((p) => {
+            .map(p => {
                 return <span className={props.currentPage === p ? style.selectedPage : style.usersPage}
-                             key={p}
-                             onClick={(e) => {
+                             onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
                                  props.onPageChange(p)
                              }}
                              style={{cursor: 'pointer'}}
                 >{p}</span>
             })}
-        {portionCount < portionNumber && <button onClick={() => {
+        {portionCount > portionNumber && <button onClick={() => {
             setPortionNumber(portionNumber + 1)
         }}>next</button>}
     </div>

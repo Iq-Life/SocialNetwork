@@ -1,45 +1,37 @@
 import React from "react";
 import avatar from './../../assets/img/ava.png';
-import style from './Users.module.css'
+import style from './User.module.css'
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 
 export let User = (props: UserPropsType) => {
     let user = props.user
     return (
-        <div>
-                <span>
-                    <div>
-                        <NavLink to={'/profile/' + user.id}>
-                        <img className={style.ava}
-                             src={user.photos.small != null ? user.photos.small : avatar}
-                             alt="ava"/>
-                        </NavLink>
-                    </div>
-                    <div>
-                        {user.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === user.id)}
-                                      onClick={() => {
-                                          props.unfollow(user.id)
-                                      }}>
-                                Unfollow</button>
-                            : <button disabled={props.followingInProgress.some(id => id === user.id)}
-                                      onClick={() => {
-                                          props.follow(user.id)
-                                      }}>
-                                Follow</button>}
-                                </div>
-                                </span>
-                <span>
-                                <span>
-                                <div>{user.name}</div>
-                                <div>{user.status}</div>
-                                </span>
-                                <span>
-                                <div>{"user.location.country"}</div>
-                                <div>{"user.location.city"}</div>
-                                </span>
-                                </span>
+        <div className={style.user}>
+            <div>
+                <NavLink to={'/profile/' + user.id}>
+                    <img className={style.ava}
+                         src={user.photos.small != null ? user.photos.small : avatar}
+                         alt="ava"/>
+                </NavLink>
+            </div>
+            <div>
+                {user.followed
+                    ? <button disabled={props.followingInProgress.some(id => id === user.id)}
+                              onClick={() => {
+                                  props.unfollow(user.id)
+                              }}>
+                        Unfollow</button>
+                    : <button disabled={props.followingInProgress.some(id => id === user.id)}
+                              onClick={() => {
+                                  props.follow(user.id)
+                              }}>
+                        Follow</button>}
+            </div>
+            <div>{user.name}</div>
+            <div>{user.status}</div>
+            <div>{"user.location.country"}</div>
+            <div>{"user.location.city"}</div>
         </div>
     )
 }

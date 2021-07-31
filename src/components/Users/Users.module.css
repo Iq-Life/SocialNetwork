@@ -2,13 +2,10 @@
     padding: 10px;
     color: DeepSkyBlue;
 }
-.ava {
-    width: 80px;
-    height: 80px;
-}
+
 .users {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 10px;
 }

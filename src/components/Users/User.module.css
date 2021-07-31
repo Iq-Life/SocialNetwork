@@ -1,0 +1,11 @@
+.ava {
+    width: 80px;
+    height: 80px;
+}
+
+.user {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
