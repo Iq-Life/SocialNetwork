@@ -1,26 +1,36 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {profileReducer, addPost, deletePost, setStatusProfile, setUserProfile} from "./profile-reducer";
+import {
+    profileReducer,
+    addPost,
+    deletePost,
+    setStatusProfile,
+    setUserProfile,
+    savePhotoSuccess
+} from "./profile-reducer";
 import {dialogsReducer, addMessage} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {usersReducer, followSuccess, setCurrentPage, toggleIsFetching,
+import {
+    usersReducer, followSuccess, setCurrentPage, toggleIsFetching,
     setTotalUsersCount, setUsers, unfollowSuccess, toggleFollowingInProgress
 } from "./users-reducer";
 import {authReducer, setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
-import { reducer as formReducer } from "redux-form"
+import {reducer as formReducer} from "redux-form"
 import {appReducer, initializedSuccess} from "./app-reducer";
 
-export type ActionTypes = ReturnType<typeof addPost>| ReturnType<typeof setStatusProfile>|
-    ReturnType<typeof addMessage>| ReturnType<typeof setUsers>|
-    ReturnType<typeof followSuccess>| ReturnType<typeof unfollowSuccess>|
-    ReturnType<typeof setCurrentPage>| ReturnType<typeof setTotalUsersCount>|
-    ReturnType<typeof toggleIsFetching>| ReturnType<typeof setUserProfile>|
-    ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress>|
-    ReturnType<typeof initializedSuccess>|ReturnType<typeof deletePost>
+export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setStatusProfile> |
+    ReturnType<typeof addMessage> | ReturnType<typeof setUsers> |
+    ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess> |
+    ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> |
+    ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> |
+    ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress> |
+    ReturnType<typeof initializedSuccess> | ReturnType<typeof deletePost> |
+    ReturnType<typeof savePhotoSuccess>
 
-export type ThunksType = ThunkAction<void, AppStateType , unknown, ActionTypes>;
 
-export let reducersBatch= combineReducers({
+export type ThunksType = ThunkAction<void, AppStateType, unknown, ActionTypes>;
+
+export let reducersBatch = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,

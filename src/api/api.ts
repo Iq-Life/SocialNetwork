@@ -1,4 +1,5 @@
 import axios from "axios";
+import {PhotosType} from "../redux/profile-reducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -37,6 +38,11 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put('profile/status', {status: status})
+    },
+    savePhoto(photoFile: any) {
+        const formData = new FormData()
+        formData.append("image", photoFile)
+        return instance.put('profile/photo', formData)
     }
 }
 
@@ -63,6 +69,7 @@ export enum ResultCodeEnum {
     Success = 0,
     Error = 1
 }
+
 export enum ResultForCaptcha {
     CaptchaIsRequired = 10
 }

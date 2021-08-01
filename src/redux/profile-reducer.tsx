@@ -5,6 +5,7 @@ const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE_POST'
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
 
 
 let initialState: ProfilePageType = {
@@ -28,11 +29,13 @@ export const profileReducer = (state = initialState, action: ActionTypes): Profi
             }
             return {...state, posts: [newPost, ...state.posts]}
         case DELETE_POST:
-            return {...state, posts: state.posts.filter(p=> p.id !== action.id)}
+            return {...state, posts: state.posts.filter(p => p.id !== action.id)}
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         case SET_STATUS:
             return {...state, status: action.status}
+        case SAVE_PHOTO_SUCCESS:
+            return {...state, profile: {...state.profile, photos: action.photos} as UserProfile}
         default:
             return state
     }
@@ -57,28 +60,35 @@ export const setStatusProfile = (status: string) => {
     } as const
 }
 export const deletePost = (id: number) => {
-    return {
-        type: 'DELETE_POST',
-        id
-    } as const
+    return {type: 'DELETE_POST', id} as const
+}
+export const savePhotoSuccess = (photos: PhotosType) => {
+    return {type: 'SAVE_PHOTO_SUCCESS', photos} as const
 }
 //thunk
 export const getUserProfile = (userId: number): ThunksType =>
-    async(dispatch) => {
+    async (dispatch) => {
         let response = await userAPI.getProfile(userId)
-            dispatch(setUserProfile(response))
+        dispatch(setUserProfile(response))
     }
 export const getUserStatus = (userId: number): ThunksType =>
-    async(dispatch) => {
+    async (dispatch) => {
         let response = await profileAPI.getStatus(userId)
-            dispatch(setStatusProfile(response.data))
+        dispatch(setStatusProfile(response.data))
     }
 export const updateStatusProfile = (status: string): ThunksType =>
-    async(dispatch) => {
+    async (dispatch) => {
         let response = await profileAPI.updateStatus(status)
-            if (response.data.resultCode === 0) {
-                dispatch(setStatusProfile(status))
-            }
+        if (response.data.resultCode === 0) {
+            dispatch(setStatusProfile(status))
+        }
+    }
+export const savePhoto = (photos: PhotosType): ThunksType =>
+    async (dispatch) => {
+        let response = await profileAPI.savePhoto(photos)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccess(response.data.data.photos))
+        }
     }
 //type
 export type ProfilePageType = {
@@ -108,5 +118,9 @@ export type UserProfile = {
     lookingForAJobDescription: null
     fullName: string
     userId: number
-    photos: { small: string, large: string }
+    photos: PhotosType
+}
+export type PhotosType = {
+    small: string
+    large: string
 }
