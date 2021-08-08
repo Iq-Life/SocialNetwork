@@ -83,7 +83,7 @@ export const updateStatusProfile = (status: string): ThunksType =>
             dispatch(setStatusProfile(status))
         }
     }
-export const savePhoto = (photos: PhotosType): ThunksType =>
+export const savePhoto = (photos: PhotosType | File): ThunksType =>
     async (dispatch) => {
         let response = await profileAPI.savePhoto(photos)
         if (response.data.resultCode === 0) {

@@ -60,7 +60,7 @@ const Contacts = (props: ContactsType) => {
 }
 //type
 type ProfileInfoType = {
-    profile: UserProfile
+    profile: UserProfile | null
     status: string
     isOwner: boolean
     savePhoto: (photos: File) => void

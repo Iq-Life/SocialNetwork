@@ -76,7 +76,7 @@ type MapDispatchToPropsType = {
     getUserProfile: (userId: number) => void
     getUserStatus: (userId: number) => void
     updateStatusProfile: (status: string) => void
-    savePhoto: (photos: PhotosType) => void
+    savePhoto: (photos: File) => void
 }
 type ProfileContainerAPIType = MapStateToPropsType & MapDispatchToPropsType
 type PathParamsType = { userId: string }

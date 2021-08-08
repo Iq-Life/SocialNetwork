@@ -2,7 +2,7 @@ import React from "react";
 import s from './Profile.module.css';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./Myposts/MyPostsContainer";
-import {PhotosType, UserProfile} from "../../redux/profile-reducer";
+import {UserProfile} from "../../redux/profile-reducer";
 
 export function Profile(props: ProfileType) {
     return (
@@ -22,6 +22,6 @@ type ProfileType = {
     profile: UserProfile | null
     status: string
     updateStatusProfile: (status: string) => void
-    savePhoto: (photos: PhotosType) => void
+    savePhoto: (photos: File) => void
     isOwner: boolean
 }
