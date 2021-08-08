@@ -1,3 +1,19 @@
+.blockProfile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.blockPhoto {
+    margin-left: 50px;
+}
+
+.blockInfo {
+    margin-right: 50px;
+}
+
 .head img {
     width: 100%;
     height: 10%;
@@ -8,4 +24,8 @@
 .avaProfile {
     width: 240px;
     height: 240px;
+}
+
+.contacts {
+    padding-left: 10px;
 }

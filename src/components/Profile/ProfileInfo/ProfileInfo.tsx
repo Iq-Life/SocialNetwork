@@ -1,48 +1,75 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import NO from './../../../assets/img/no.png';
 import YES from './../../../assets/img/yes.png';
-import {PhotosType, UserProfile} from "../../../redux/profile-reducer";
+import {ContactsUserProfile, UserProfile} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 import avatar from './../../../assets/img/ava.png';
 import s from "./ProfileInfo.module.css"
 
-export function ProfileInfo(props: ProfileInfoType) {
-    if (!props.profile) {
+export const ProfileInfo: React.FC<ProfileInfoType> = ({
+                                                           profile, status, isOwner,
+                                                           savePhoto, updateStatusProfile
+                                                       }) => {
+    if (!profile) {
         return <Preloader/>
     }
 
-    const onMainPhotoSelected = (e: any) => {
-        if (e.target.files.length) {
-            props.savePhoto(e.target.files[0])
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
+            savePhoto(e.target.files[0])
         }
     }
 
     return (
-        <div>
-            <div><h4>Name: </h4><p>{props.profile && props.profile.fullName}</p></div>
-            <div>
-                <img className={s.avaProfile} src={props.profile.photos.large || avatar} alt={"user avatar"}/>
-                {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+        <div className={s.blockProfile}>
+
+            <div><b>Status</b>:
+                <ProfileStatusWithHooks status={status} updateStatusProfile={updateStatusProfile}/>
             </div>
-            <div>Status:
-                <ProfileStatusWithHooks status={props.status} updateStatusProfile={props.updateStatusProfile}/>
+            <ProfileData profile={profile}/>
+            <div className={s.blockPhoto}>
+                <div><b>Name: </b><p>{profile && profile.fullName}</p></div>
+                <div>
+                    <img className={s.avaProfile} src={profile.photos.large || avatar} alt={"user avatar"}/>
+                    <div>{isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}</div>
+                </div>
             </div>
-            <div>About me: {props.profile && props.profile.aboutMe}</div>
-            <div>Looking for a job: {props.profile && props.profile.lookingForAJob ?
-                <img src={YES} alt={"Yes"} width={30} height={30}/>
-                : <img src={NO} alt={"No"} width={30} height={30}/>}
-            </div>
-            <div>Looking for a job description: {props.profile && props.profile.lookingForAJobDescription}</div>
         </div>
     )
 }
 
+const ProfileData: React.FC<ProfileDataType> = ({profile}) => {
+    return <div className={s.blockInfo}>
+        <div><b>About me</b>:
+            {profile && profile.aboutMe}</div>
+        <div><b>Looking for a job</b>:
+            {profile && profile.lookingForAJob
+                ? <img src={YES} alt={"Yes"} width={30} height={30}/>
+                : <img src={NO} alt={"No"} width={30} height={30}/>}
+        </div>
+        <div><b>My professional skills</b>: {profile && profile.lookingForAJobDescription}</div>
+        <div><b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+            return <Contacts key={key} contactTitle={key}
+                             contactValue={profile.contacts[key as | keyof ContactsUserProfile]}/>
+        })}</div>
+    </div>
+}
+const Contacts = (props: ContactsType) => {
+    return <div className={s.contacts}><b>{props.contactTitle}</b>: {props.contactValue}</div>
+}
 //type
 type ProfileInfoType = {
-    profile: UserProfile | null
+    profile: UserProfile
     status: string
     isOwner: boolean
-    savePhoto: (photos: PhotosType) => void
+    savePhoto: (photos: File) => void
     updateStatusProfile: (status: string) => void
+}
+type ProfileDataType = {
+    profile: UserProfile
+}
+type ContactsType = {
+    contactTitle: string
+    contactValue: string
 }

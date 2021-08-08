@@ -101,16 +101,6 @@ export type PostsType = {
     message: string
     like: number
 }
-export type ContactsUserProfile = {
-    facebook: null,
-    website: null,
-    vk: null,
-    twitter: null,
-    instagram: null,
-    youtube: null,
-    github: null,
-    mainLink: null
-}
 export type UserProfile = {
     aboutMe: string
     contacts: ContactsUserProfile
@@ -119,6 +109,16 @@ export type UserProfile = {
     fullName: string
     userId: number
     photos: PhotosType
+}
+export type ContactsUserProfile = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
 }
 export type PhotosType = {
     small: string
