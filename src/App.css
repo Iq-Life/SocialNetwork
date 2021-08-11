@@ -9,8 +9,9 @@
 }
 
 .navbar {
-padding-right: 5px;
+    padding-right: 5px;
 }
+
 .NavAndDisp {
     display: flex;
 }
@@ -25,8 +26,12 @@ padding-right: 5px;
     border: 1px solid Cyan;
     border-radius: 25px;
 }
+
 .all {
     background-color: #191919;
-
     min-height: 100vh;
+}
+
+button {
+    border-radius: 10px;
 }

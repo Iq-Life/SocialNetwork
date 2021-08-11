@@ -1,5 +1,5 @@
-import React, {FormEvent} from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import React from "react";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import {CreateField, Input} from "../common/formControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
@@ -13,7 +13,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, err
         {CreateField("Email", "email", [required], Input, null, null)}
         {CreateField("Password", "password", [required], Input, {type: "password"}, null)}
         {CreateField(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
-        { error && <div className={s.formSummaryError}>
+        {error && <div className={s.formSummaryError}>
             {error}
         </div>}
         <div>
@@ -48,7 +48,6 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
-    handleSubmit: (event: FormEvent<HTMLFormElement>) => void,
     error: string
 }
 type MapDispatchToProps = {
