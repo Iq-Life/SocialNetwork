@@ -27,8 +27,11 @@ export const ProfileInfo: React.FC<ProfileInfoType> = ({
     }
 
     const onSubmit = (formData: UserProfile) => {
-        saveProfile(formData)
-        setEditMode(false)
+        saveProfile(formData).then(
+            () => {
+                setEditMode(false)
+            }
+        )
     }
     return (
         <div className={s.blockProfile}>
@@ -75,7 +78,8 @@ type ProfileInfoType = {
     status: string
     isOwner: boolean
     savePhoto: (photos: File) => void
-    saveProfile: (profile: UserProfile) => void
+    //todo types promise
+    saveProfile: (profile: UserProfile) => any
     updateStatusProfile: (status: string) => void
 }
 type ProfileDataType = {

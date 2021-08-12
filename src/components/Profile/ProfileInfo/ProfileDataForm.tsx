@@ -7,7 +7,7 @@ import containerStyle from "../../../Container.module.css"
 
 
 const ProfileDataForm: React.FC<InjectedFormProps<UserProfile, ProfileDataFormType> & ProfileDataFormType> =
-    ({profile, handleSubmit}) => {
+    ({profile, handleSubmit, error}) => {
         return <form onSubmit={handleSubmit} className={ProfileInfoStyle.blockInfo}>
             <div><b>Name</b>:
                 {CreateField("Full Name", "fullName",
@@ -31,6 +31,9 @@ const ProfileDataForm: React.FC<InjectedFormProps<UserProfile, ProfileDataFormTy
                         {CreateField(key, "contacts." + key, [], Input, null, null)}</b></div>
                 })}
             </div>
+            {error && <div className={containerStyle.formSummaryError}>
+                {error}
+            </div>}
             <button>save</button>
         </form>
     }
