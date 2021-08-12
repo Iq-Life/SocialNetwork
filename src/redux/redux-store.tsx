@@ -5,7 +5,7 @@ import {
     deletePost,
     setStatusProfile,
     setUserProfile,
-    savePhotoSuccess
+    savePhotoSuccess, saveProfileSuccess
 } from "./profile-reducer";
 import {dialogsReducer, addMessage} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
@@ -25,7 +25,7 @@ export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setStat
     ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> |
     ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress> |
     ReturnType<typeof initializedSuccess> | ReturnType<typeof deletePost> |
-    ReturnType<typeof savePhotoSuccess>
+    ReturnType<typeof savePhotoSuccess> | ReturnType<typeof saveProfileSuccess>
 
 
 export type ThunksType = ThunkAction<void, AppStateType, unknown, ActionTypes>;

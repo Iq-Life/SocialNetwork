@@ -11,6 +11,7 @@ export function Profile(props: ProfileType) {
                          status={props.status}
                          isOwner={props.isOwner}
                          savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}
                          updateStatusProfile={props.updateStatusProfile}/>
             <MyPostsContainer/>
         </div>
@@ -24,4 +25,5 @@ type ProfileType = {
     updateStatusProfile: (status: string) => void
     savePhoto: (photos: File) => void
     isOwner: boolean
+    saveProfile: (profile: UserProfile) => void
 }

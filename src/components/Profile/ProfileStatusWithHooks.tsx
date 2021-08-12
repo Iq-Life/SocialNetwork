@@ -1,25 +1,25 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 
-export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
+export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = ({status, updateStatusProfile}) => {
     let [editMode, setEditMode] = useState(false)
-    let [status, setStatus] = useState(props.status)
+    let [localStatus, setLocalStatus] = useState(status)
 
     useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+        setLocalStatus(status)
+    }, [status])
 
     const activateEditMode = () => {
         setEditMode(true)
     }
     const deactivateEditMode = () => {
         setEditMode(false)
-        props.updateStatusProfile(status)
+        updateStatusProfile(localStatus)
     }
     const handleFocus = (event: ChangeEvent<HTMLInputElement>) => {
         event.target.select()
     }
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.currentTarget.value)
+        setLocalStatus(e.currentTarget.value)
     }
     const addStatusKeyPress = (e: any) => {
         if (e.key === "Enter") {
@@ -30,7 +30,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     return <div>
         {!editMode &&
         <div>
-            <span onDoubleClick={activateEditMode}>{props.status || " --- "}</span>
+            <span onDoubleClick={activateEditMode}>{status || " --- "}</span>
         </div>
         }
         {editMode &&
@@ -38,7 +38,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
             <input onFocus={handleFocus}
                    autoFocus={true}
                    onBlur={deactivateEditMode}
-                   value={status}
+                   value={localStatus}
                    onChange={onStatusChange}
                    onKeyPress={addStatusKeyPress}
             />

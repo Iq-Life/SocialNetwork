@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PhotosType} from "../redux/profile-reducer";
+import {UserProfile} from "../redux/profile-reducer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -39,10 +39,13 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put('profile/status', {status: status})
     },
-    savePhoto(photoFile: any) {
+    savePhoto(photoFile: File) {
         const formData = new FormData()
         formData.append("image", photoFile)
         return instance.put('profile/photo', formData)
+    },
+    saveProfile(profile: UserProfile) {
+        return instance.put('profile', profile)
     }
 }
 

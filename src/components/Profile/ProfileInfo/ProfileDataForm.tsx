@@ -1,20 +1,20 @@
 import React from "react";
-import s from "./ProfileInfo.module.css";
 import ProfileInfoStyle from "./ProfileDataForm.module.css";
 import {UserProfile} from "../../../redux/profile-reducer";
 import {CreateField, Input, Textarea} from "../../common/formControls/FormsControls";
 import {InjectedFormProps, reduxForm} from "redux-form";
+import containerStyle from "../../../Container.module.css"
 
 
 const ProfileDataForm: React.FC<InjectedFormProps<UserProfile, ProfileDataFormType> & ProfileDataFormType> =
     ({profile, handleSubmit}) => {
         return <form onSubmit={handleSubmit} className={ProfileInfoStyle.blockInfo}>
             <div><b>Name</b>:
-                {CreateField(`${profile.fullName}`, "fullName",
+                {CreateField("Full Name", "fullName",
                     [], Input, null, null)}
             </div>
             <div><b>About me</b>:
-                {CreateField(`${profile.aboutMe}`, "aboutMe",
+                {CreateField("About me", "aboutMe",
                     [], Textarea, null, null)}
             </div>
             <div><b>Looking for a job</b>:
@@ -22,12 +22,12 @@ const ProfileDataForm: React.FC<InjectedFormProps<UserProfile, ProfileDataFormTy
                     [], Input, {type: "checkbox"}, null)}
             </div>
             <div><b>My professional skills</b>:
-                {CreateField(`${profile.lookingForAJobDescription}`, "lookingForAJobDescription",
+                {CreateField("My professional skills", "lookingForAJobDescription",
                     [], Textarea, null, null)}
             </div>
             <div><b>Contacts</b>:
                 {Object.keys(profile.contacts).map(key => {
-                    return <div key={key} className={s.contacts}><b>{key}:
+                    return <div key={key} className={containerStyle.contacts}><b>{key}:
                         {CreateField(key, "contacts." + key, [], Input, null, null)}</b></div>
                 })}
             </div>

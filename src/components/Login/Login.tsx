@@ -6,14 +6,14 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
-import s from "../common/formControls/FormsControls.module.css"
+import containerStyle from "../../Container.module.css"
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return <form onSubmit={handleSubmit}>
         {CreateField("Email", "email", [required], Input, null, null)}
         {CreateField("Password", "password", [required], Input, {type: "password"}, null)}
         {CreateField(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
-        {error && <div className={s.formSummaryError}>
+        {error && <div className={containerStyle.formSummaryError}>
             {error}
         </div>}
         <div>

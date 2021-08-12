@@ -1,11 +1,13 @@
 import {ActionTypes, ThunksType} from "./redux-store";
 import {profileAPI, userAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
+const SAVE_PROFILE_SUCCESS = 'SAVE_PROFILE_SUCCESS'
 
 
 let initialState: ProfilePageType = {
@@ -36,6 +38,8 @@ export const profileReducer = (state = initialState, action: ActionTypes): Profi
             return {...state, status: action.status}
         case SAVE_PHOTO_SUCCESS:
             return {...state, profile: {...state.profile, photos: action.photos} as UserProfile}
+        case SAVE_PROFILE_SUCCESS:
+            return {...state, profile: action.profile}
         default:
             return state
     }
@@ -65,6 +69,9 @@ export const deletePost = (id: number) => {
 export const savePhotoSuccess = (photos: PhotosType) => {
     return {type: 'SAVE_PHOTO_SUCCESS', photos} as const
 }
+export const saveProfileSuccess = (profile: UserProfile) => {
+    return {type: 'SAVE_PROFILE_SUCCESS', profile} as const
+}
 //thunk
 export const getUserProfile = (userId: number): ThunksType =>
     async (dispatch) => {
@@ -83,11 +90,19 @@ export const updateStatusProfile = (status: string): ThunksType =>
             dispatch(setStatusProfile(status))
         }
     }
-export const savePhoto = (photos: PhotosType | File): ThunksType =>
+export const savePhoto = (photos: File): ThunksType =>
     async (dispatch) => {
         let response = await profileAPI.savePhoto(photos)
         if (response.data.resultCode === 0) {
             dispatch(savePhotoSuccess(response.data.data.photos))
+        }
+    }
+export const saveProfile = (profile: UserProfile): ThunksType =>
+    async (dispatch) => {
+        let response = await profileAPI.saveProfile(profile)
+        debugger
+        if (response.data.resultCode === 0) {
+            dispatch(saveProfileSuccess(profile))
         }
     }
 //type
@@ -102,12 +117,12 @@ export type PostsType = {
     like: number
 }
 export type UserProfile = {
-    aboutMe: string
-    contacts: ContactsUserProfile
+    userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: null
     fullName: string
-    userId: number
+    aboutMe: string
+    contacts: ContactsUserProfile
     photos: PhotosType
 }
 export type ContactsUserProfile = {
