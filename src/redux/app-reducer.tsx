@@ -23,10 +23,13 @@ export const initializedSuccess = () => {
 }
 //thunk
 export const initializeApp = (): ThunksType => (dispatch) => {
-       let promise = dispatch(getAutUserData())
-        Promise.all([promise])
-            .then(()=>{dispatch(initializedSuccess())})
-    }
+    debugger
+    let promise = dispatch(getAutUserData())
+    Promise.all([promise])
+        .then(() => {
+            dispatch(initializedSuccess())
+        })
+}
 //type
 export type InitialStateType = {
     initialized: boolean

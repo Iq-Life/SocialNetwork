@@ -13,7 +13,7 @@ import {
     usersReducer, followSuccess, setCurrentPage, toggleIsFetching,
     setTotalUsersCount, setUsers, unfollowSuccess, toggleFollowingInProgress
 } from "./users-reducer";
-import {authReducer, setAuthUserData} from "./auth-reducer";
+import {authReducer, getCaptchaUrlSuccess, setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
 import {appReducer, initializedSuccess} from "./app-reducer";
@@ -25,7 +25,8 @@ export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setStat
     ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile> |
     ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress> |
     ReturnType<typeof initializedSuccess> | ReturnType<typeof deletePost> |
-    ReturnType<typeof savePhotoSuccess> | ReturnType<typeof saveProfileSuccess>
+    ReturnType<typeof savePhotoSuccess> | ReturnType<typeof saveProfileSuccess> |
+    ReturnType<typeof getCaptchaUrlSuccess>
 
 
 export type ThunksType = ThunkAction<void, AppStateType, unknown, ActionTypes>;

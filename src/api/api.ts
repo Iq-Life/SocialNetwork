@@ -26,7 +26,6 @@ export const userAPI = {
         console.warn('Obsolete method. Please profileAPI object')
         return profileAPI.getProfile(userId)
     }
-
 }
 
 export const profileAPI = {
@@ -64,6 +63,12 @@ export const authAPI = {
     },
     logout() {
         return instance.delete(`auth/login`)
+    }
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get('security/get-captcha-url')
     }
 }
 
