@@ -23,7 +23,6 @@ export const initializedSuccess = () => {
 }
 //thunk
 export const initializeApp = (): ThunksType => (dispatch) => {
-    debugger
     let promise = dispatch(getAutUserData())
     Promise.all([promise])
         .then(() => {

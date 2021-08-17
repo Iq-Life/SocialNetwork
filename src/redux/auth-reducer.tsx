@@ -1,6 +1,8 @@
 import {ActionTypes, ThunksType} from "./redux-store";
-import {authAPI, ResultCodeEnum, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {authAPI} from "../api/authAPI";
+import {ResultCodeEnum, ResultForCaptcha, securityAPI} from "../api/api";
+
 
 const SET_USER_DATA = "SET_USER_DATA"
 const GET_CAPTCHA_URL_SUCCESS = "GET_CAPTCHA_URL_SUCCESS"
@@ -26,8 +28,8 @@ export const authReducer = (state = initialState, action: ActionTypes): InitialS
 export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isFetching: boolean) => {
     return {type: SET_USER_DATA, data: {id, email, login, isFetching}} as const
 }
-export const getCaptchaUrlSuccess = (captcha: string | null) => {
-    return {type: GET_CAPTCHA_URL_SUCCESS, payload: {captcha}} as const
+export const getCaptchaUrlSuccess = (captchaUrl: string) => {
+    return {type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}} as const
 }
 //thunk
 export const getAutUserData = (): ThunksType => async (dispatch) => {
@@ -38,13 +40,13 @@ export const getAutUserData = (): ThunksType => async (dispatch) => {
         dispatch(setAuthUserData(id, email, login, true))
     }
 }
-export const login = (email: string, password: string, rememberMe: boolean): ThunksType => async (dispatch) => {
-    const data = await authAPI.login(email, password, rememberMe)
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunksType => async (dispatch) => {
+    const data = await authAPI.login(email, password, rememberMe, captcha)
 
     if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(getAutUserData())
     } else {
-        if (data.resultCode === 10) {
+        if (data.resultCode === ResultForCaptcha.CaptchaIsRequired) {
             dispatch(getCaptchaUrl())
         }
         let message: string = data.messages.length > 0 ? data.messages[0] : "Some error"
@@ -58,7 +60,6 @@ export const logout = (): ThunksType => async (dispatch) => {
         dispatch(setAuthUserData(null, null, null, false))
     }
 }
-
 
 export const getCaptchaUrl = (): ThunksType => async (dispatch) => {
     const response = await securityAPI.getCaptchaUrl()

@@ -1,7 +1,8 @@
 import {ActionTypes, ThunksType} from "./redux-store";
-import {userAPI} from "../api/api";
+import {ResultCodeEnum} from "../api/api";
 import {Dispatch} from "redux";
 import {updateObjectInArray} from "../utils/validators/object-heipers";
+import {userAPI} from "../api/userAPI";
 
 const FOLLOWED = "FOLLOWED"
 const UNFOLLOWED = "UNFOLLOWED"
@@ -89,11 +90,12 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
         dispatch(setTotalUsersCount(data.totalCount))
     }
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionTypes>, userId: number,
+                                   //todo type number = error
                                    apiMethod: any,
                                    actionCreator: (userId: number) => ActionTypes) => {
     dispatch(toggleFollowingInProgress(true, userId))
     let data = await apiMethod(userId)
-    if (data.resultCode == 0) {
+    if (data.resultCode == ResultCodeEnum.Success) {
         dispatch(actionCreator(userId))
     }
     dispatch(toggleFollowingInProgress(false, userId))
@@ -109,11 +111,11 @@ export const unfollow = (userId: number): ThunksType =>
 //type
 export type UserType = {
     id: number,
-    followed: boolean,
     name: string,
     status: string,
-    location: { country: string, city: string },
     photos: { small: string, large: string }
+    followed: boolean,
+    location: { country: string, city: string },
 }
 type InitialStateType = {
     users: Array<UserType>
