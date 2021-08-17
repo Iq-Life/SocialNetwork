@@ -6,8 +6,7 @@ export const profileAPI = {
         return instance.get<UserProfile>('profile/' + userId).then(response => response.data)
     },
     getStatus(userId: number) {
-        return instance.get('profile/status/' + userId).then(response => response.data)
-            .then(response => response.data)
+        return instance.get<string>('profile/status/' + userId).then(response => response.data)
     },
     updateStatus(status: string) {
         return instance.put<ResponseType>('profile/status', {status: status})

@@ -17,7 +17,6 @@ let initialState: InitialStateType = {
 export const authReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
-            return {...state, ...action.data}
         case GET_CAPTCHA_URL_SUCCESS:
             return {...state, ...action.payload}
         default:
@@ -26,7 +25,7 @@ export const authReducer = (state = initialState, action: ActionTypes): InitialS
 }
 //action
 export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isFetching: boolean) => {
-    return {type: SET_USER_DATA, data: {id, email, login, isFetching}} as const
+    return {type: SET_USER_DATA, payload: {id, email, login, isFetching}} as const
 }
 export const getCaptchaUrlSuccess = (captchaUrl: string) => {
     return {type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}} as const
@@ -56,11 +55,10 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 export const logout = (): ThunksType => async (dispatch) => {
     const response = await authAPI.logout()
 
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode === ResultCodeEnum.Success) {
         dispatch(setAuthUserData(null, null, null, false))
     }
 }
-
 export const getCaptchaUrl = (): ThunksType => async (dispatch) => {
     const response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.data.url
