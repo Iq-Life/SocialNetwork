@@ -15,7 +15,7 @@ export const securityAPI = {
 }
 
 //types & enum
-export type ResponseType<D = {}, RC = ResultCodeEnum> = {
+export type APIResponseType<D = {}, RC = ResultCodeEnum> = {
     data: D
     resultCode: RC
     messages: Array<string>

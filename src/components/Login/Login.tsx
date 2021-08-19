@@ -7,6 +7,8 @@ import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import containerStyle from "../../Container.module.css"
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/AuthRedirect";
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
                                                                                                          handleSubmit,
@@ -32,7 +34,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
 
 const LoginReduxForm = reduxForm<FormDataType, LoginFormOwnProps>({form: "login"})(LoginForm)
 
-export const Login: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
+const Login: React.FC<MapStateToProps & MapDispatchToProps> = (props) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
@@ -50,9 +52,9 @@ const MapStateToProps = (state: AppStateType) => {
         captchaUrl: state.auth.captchaUrl
     }
 }
-export default connect(MapStateToProps, {login},)(Login)
-
 //types
+
+export default connect(MapStateToProps, {login})(Login)
 type LoginFormOwnProps = { captchaUrl: string | null }
 type FormDataType = {
     email: string

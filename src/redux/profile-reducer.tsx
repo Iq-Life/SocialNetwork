@@ -89,6 +89,8 @@ export const updateStatusProfile = (status: string): ThunksType =>
         let data = await profileAPI.updateStatus(status)
         if (data.resultCode === ResultCodeEnum.Success) {
             dispatch(setStatusProfile(status))
+        } else {
+            alert(data.messages[0])
         }
     }
 export const savePhoto = (photos: File): ThunksType =>
@@ -101,7 +103,6 @@ export const savePhoto = (photos: File): ThunksType =>
 export const saveProfile = (profile: UserProfile): ThunksType =>
     async (dispatch) => {
         let data = await profileAPI.saveProfile(profile)
-        debugger
         if (data.resultCode === ResultCodeEnum.Success) {
             dispatch(saveProfileSuccess(profile))
         } else {

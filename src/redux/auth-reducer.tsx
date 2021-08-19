@@ -33,7 +33,6 @@ export const getCaptchaUrlSuccess = (captchaUrl: string) => {
 //thunk
 export const getAutUserData = (): ThunksType => async (dispatch) => {
     const response = await authAPI.me()
-
     if (response.resultCode === ResultCodeEnum.Success) {
         let {id, email, login} = response.data
         dispatch(setAuthUserData(id, email, login, true))
