@@ -6,6 +6,7 @@
 
 .usersPage {
     padding: 5px;
+    cursor: pointer;
 }
 
 .spanPage {
@@ -13,6 +14,7 @@
     flex-wrap: wrap;
     justify-content: center;
     width: auto;
+    cursor: pointer;
 }
 
 span {

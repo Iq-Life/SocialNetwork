@@ -16,7 +16,6 @@ import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
 import {compose} from "redux";
 import {withRouter} from "react-router";
-import {withSuspense} from "./hoc/withSuspense";
 
 //const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogContainer'));
 //const Login = React.lazy(() => import('./components/Login/Login'));

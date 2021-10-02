@@ -15,7 +15,7 @@ const MyPosts = React.memo((props: MyPostsType) => {
 
     let postsElements = props.posts
         .map((post: PostType) => <Post id={post.id} message={post.message} like={post.like} key={post.id}/>)
-
+//todo types
     let newAddPost = (values:any) => {
         props.addPost(values.newPostText)
     }

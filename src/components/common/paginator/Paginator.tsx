@@ -26,7 +26,6 @@ export let Paginator = (props: PaginatorType) => {
                              onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
                                  props.onPageChange(p)
                              }}
-                             style={{cursor: 'pointer'}}
                 >{p}</span>
             })}
         {portionCount > portionNumber && <button onClick={() => {
