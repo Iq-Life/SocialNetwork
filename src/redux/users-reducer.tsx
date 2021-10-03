@@ -90,8 +90,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
         dispatch(setTotalUsersCount(data.totalCount))
     }
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionTypes>, userId: number,
-                                   //todo type number = error
-                                   apiMethod: any,
+                                   apiMethod: (userId: number) => any,
                                    actionCreator: (userId: number) => ActionTypes) => {
     dispatch(toggleFollowingInProgress(true, userId))
     let data = await apiMethod(userId)

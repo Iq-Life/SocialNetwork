@@ -1,12 +1,15 @@
-import React from "react";
+import React, {FC} from "react";
 import style from './Users.module.css'
 import {UserType} from "../../redux/users-reducer";
 import {Paginator} from "../common/paginator/Paginator";
 import {User} from "./User";
 
-export let Users = (props: UsersPropsType) => {
+export let Users: FC<UsersPropsType> = ({
+                                            users, follow, unfollow, totalUsersCount,
+                                            pageSize, currentPage, onPageChange, followingInProgress,
+                                        }) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
@@ -14,17 +17,17 @@ export let Users = (props: UsersPropsType) => {
 
     return <div className={style.all}>
         <div className={style.paginator}>
-            <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}
-                       currentPage={props.currentPage} onPageChange={props.onPageChange}
+            <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize}
+                       currentPage={currentPage} onPageChange={onPageChange}
                        portionSize={15}/>
         </div>
         <div className={style.users}>
-            {props.users.map(u => <User
+            {users.map(u => <User
                 key={u.id}
                 user={u}
-                followingInProgress={props.followingInProgress}
-                follow={props.follow}
-                unfollow={props.unfollow}
+                followingInProgress={followingInProgress}
+                follow={follow}
+                unfollow={unfollow}
             />)}
         </div>
     </div>

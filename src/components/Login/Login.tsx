@@ -7,8 +7,6 @@ import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 import containerStyle from "../../Container.module.css"
-import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/AuthRedirect";
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
                                                                                                          handleSubmit,
@@ -16,12 +14,12 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
                                                                                                          captchaUrl
                                                                                                      }) => {
     return <form onSubmit={handleSubmit}>
-        {CreateField("Email", "email", [required], Input, null, null)}
-        {CreateField("Password", "password", [required], Input, {type: "password"}, null)}
-        {CreateField(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
+        {CreateField<LoginFormValuesTypeKeys>("Email", "email", [required], Input, null, null)}
+        {CreateField<LoginFormValuesTypeKeys>("Password", "password", [required], Input, {type: "password"}, null)}
+        {CreateField<LoginFormValuesTypeKeys>(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
 
         {captchaUrl && <img src={captchaUrl}/>}
-        {captchaUrl && CreateField("Symbols from image", "captcha", [required], Input, {}, null)}
+        {captchaUrl && CreateField<LoginFormValuesTypeKeys>("Symbols from image", "captcha", [required], Input, {}, null)}
 
         {error && <div className={containerStyle.formSummaryError}>
             {error}
@@ -52,9 +50,10 @@ const MapStateToProps = (state: AppStateType) => {
         captchaUrl: state.auth.captchaUrl
     }
 }
-//types
-
 export default connect(MapStateToProps, {login})(Login)
+
+//types
+type LoginFormValuesTypeKeys = Extract<keyof FormDataType, string>
 type LoginFormOwnProps = { captchaUrl: string | null }
 type FormDataType = {
     email: string

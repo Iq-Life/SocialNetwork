@@ -1,18 +1,21 @@
 import React, {useState} from "react";
 import style from './Paginator.module.css'
 
-export let Paginator = (props: PaginatorType) => {
+export let Paginator: React.FC<PaginatorType> = ({
+                                                     portionSize, totalItemsCount,
+                                                     pageSize, currentPage, onPageChange
+                                                 }) => {
 
-    let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
-    let pages = [];
+    let pagesCount = Math.ceil(totalItemsCount / pageSize)
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
 
-    let portionCount = Math.ceil(pagesCount / props.portionSize)
+    let portionCount = Math.ceil(pagesCount / portionSize)
     let [portionNumber, setPortionNumber] = useState(1)
-    let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1
-    let rightPortionPageNumber = portionNumber * props.portionSize
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
+    let rightPortionPageNumber = portionNumber * portionSize
 
     return <div className={style.spanPage}>
         {portionNumber > 1 && <button onClick={() => {
@@ -22,9 +25,9 @@ export let Paginator = (props: PaginatorType) => {
         {pages
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map(p => {
-                return <span className={props.currentPage === p ? style.selectedPage : style.usersPage}
+                return <span className={currentPage === p ? style.selectedPage : style.usersPage}
                              onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
-                                 props.onPageChange(p)
+                                 onPageChange(p)
                              }}
                 >{p}</span>
             })}

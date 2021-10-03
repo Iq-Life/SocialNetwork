@@ -23,8 +23,11 @@ export const initializedSuccess = () => {
 }
 //thunk
 export const initializeApp = (): ThunksType => async (dispatch) => {
-    await dispatch(getAutUserData())
-    dispatch(initializedSuccess())
+    let promise = dispatch(getAutUserData())
+    Promise.all([promise])
+        .then(() => {
+            dispatch(initializedSuccess())
+        })
 }
 //type
 export type InitialStateType = {

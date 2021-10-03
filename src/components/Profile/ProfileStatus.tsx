@@ -19,16 +19,17 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
     onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({status: e.currentTarget.value})
     }
-    addStatusKeyPress = (e: any) => {
+    addStatusKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             this.deactivateEditMode()
         }
     }
+
     componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>) {
         if (prevProps.status !== this.props.status)
-               this.setState({
-                   status: this.props.status
-               })
+            this.setState({
+                status: this.props.status
+            })
     }
 
     render() {

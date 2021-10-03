@@ -1,12 +1,14 @@
 import React from "react";
-import {follow, getUsersThunkCreator, setCurrentPage, unfollow, UserType} from "../../redux/users-reducer";
+import {follow, getUsersThunkCreator, unfollow, UserType} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 import {compose} from "redux";
-import {getCurrentPage, getFollowingInProgress, getIsFetching,
-    getPageSize, getTotalUsersCount, getUsers} from "../../redux/users-selectors";
+import {
+    getCurrentPage, getFollowingInProgress, getIsFetching,
+    getPageSize, getTotalUsersCount, getUsers
+} from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component <UsersContainerPropsType> {
 
@@ -49,9 +51,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 export default compose<React.ComponentType>(
     connect<MapStateToPropsType, MapDispatchToProps, {}, AppStateType>
-    (mapStateToProps, {
-            follow, unfollow, setCurrentPage, getUsersThunkCreator })
-    )(UsersContainer)
+    (mapStateToProps, {follow, unfollow, getUsersThunkCreator}))(UsersContainer)
 
 //types
 type MapStateToPropsType = {
@@ -65,7 +65,6 @@ type MapStateToPropsType = {
 type MapDispatchToProps = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setCurrentPage: (pageNumber: number) => void
-    getUsersThunkCreator: (currentPage: number, pageSize:number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 export type UsersContainerPropsType = MapDispatchToProps & MapStateToPropsType
