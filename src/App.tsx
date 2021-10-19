@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
 import Settings from "./components/Setting/Settings";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -85,11 +85,11 @@ let AppContainer = compose<React.ComponentType>(
     (MapStateToProps, {initializeApp}))(App)
 
 export const SamuraiJSApp = () => {
-    return <BrowserRouter>
+    return <HashRouter>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 //types

@@ -16,7 +16,7 @@ import {
 import {authReducer, getCaptchaUrlSuccess, setAuthUserData} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
-import {appReducer, initializedSuccess} from "./app-reducer";
+import {appReducer, errorMessage, initializedSuccess} from "./app-reducer";
 
 export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setStatusProfile> |
     ReturnType<typeof addMessage> | ReturnType<typeof setUsers> |
@@ -26,7 +26,7 @@ export type ActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setStat
     ReturnType<typeof setAuthUserData> | ReturnType<typeof toggleFollowingInProgress> |
     ReturnType<typeof initializedSuccess> | ReturnType<typeof deletePost> |
     ReturnType<typeof savePhotoSuccess> | ReturnType<typeof saveProfileSuccess> |
-    ReturnType<typeof getCaptchaUrlSuccess>
+    ReturnType<typeof getCaptchaUrlSuccess> | ReturnType<typeof errorMessage>
 
 
 export type ThunksType = ThunkAction<void, AppStateType, unknown, ActionTypes>;
