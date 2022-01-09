@@ -37,8 +37,8 @@ export const initializeApp = (): ThunksType => async (dispatch) => {
         .then(() => {
             dispatch(initializedSuccess())
         })
-    /*await dispatch(getAutUserData())
-    dispatch(initializedSuccess())*/
+    await dispatch(getAutUserData())
+    dispatch(initializedSuccess())
 }
 //type
 export type InitialStateType = {

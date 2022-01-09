@@ -6,18 +6,8 @@ import Message from "./Message/Message";
 import {Redirect} from 'react-router-dom';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../common/formControls/FormsControls";
-import { maxLengthCreator, required} from "../../utils/validators/validators";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 
-type DialogsType = {
-    dialogsPage: DialogsPgeType
-    isAuth: boolean
-    addMessage: (values: string) => void
-}
-
-type AddMessageFormType = {
-    addNewMessage: (newMessageBody: string) => void
-    handleSubmit: (event: FormEvent<HTMLFormElement>) => void
-}
 
 function Dialogs(props: DialogsType) {
 
@@ -63,5 +53,17 @@ const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) 
 }
 
 const AddMessageReduxForm = reduxForm<AddMessageFormType>({form: "newMessageBody"})(AddMessageForm)
+
+//type
+type DialogsType = {
+    dialogsPage: DialogsPgeType
+    isAuth: boolean
+    addMessage: (values: string) => void
+}
+
+type AddMessageFormType = {
+    addNewMessage: (newMessageBody: string) => void
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+}
 
 export default Dialogs;

@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from './../../assets/img/ava.png';
+import avatar from './../../assets/img/man.png';
 import style from './User.module.css'
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
@@ -30,8 +30,7 @@ export let User = (props: UserPropsType) => {
             </div>
             <div>{user.name}</div>
             <div>{user.status}</div>
-            <div>{"user.location.country"}</div>
-            <div>{"user.location.city"}</div>
+            <div>The Earth Planet</div>
         </div>
     )
 }

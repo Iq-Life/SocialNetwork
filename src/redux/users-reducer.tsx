@@ -26,8 +26,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     switch (action.type) {
         case FOLLOWED:
             return {
-                ...state,
-                users: updateObjectInArray(state.users, action.usersID,
+                ...state, users: updateObjectInArray(state.users, action.usersID,
                     "id", {followed: true})
             }
         case UNFOLLOWED:
@@ -89,6 +88,8 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
         dispatch(setUsers(data.items))
         dispatch(setTotalUsersCount(data.totalCount))
     }
+
+
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionTypes>, userId: number,
                                    apiMethod: (userId: number) => any,
                                    actionCreator: (userId: number) => ActionTypes) => {

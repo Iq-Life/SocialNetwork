@@ -1,5 +1,6 @@
 {
   "name": "my-react",
+  "homepage": "https://Iq-Life.github.io/SocialNetwork",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,7 +27,6 @@
     "redux-thunk": "^2.3.0",
     "typescript": "^3.7.7"
   },
-  "homepage": "https://Iq-Life.github.io/SocialNetwork",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

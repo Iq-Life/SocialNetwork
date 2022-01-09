@@ -5,7 +5,11 @@
 
 .user {
     margin: 5px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: #00BFFF 1px solid;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.7);
 }
